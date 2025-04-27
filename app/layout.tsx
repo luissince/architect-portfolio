@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${playfair.variable} ${montserrat.variable}`}>
+    <html lang="es" suppressHydrationWarning className={`${playfair.variable} ${montserrat.variable}`}>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <RegionProvider>

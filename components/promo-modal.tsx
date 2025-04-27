@@ -6,7 +6,6 @@ import { useRegion } from "@/context/region-context"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { X } from "lucide-react"
 
 export default function PromoModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -77,9 +76,7 @@ export default function PromoModal() {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">{promoContent.title}</DialogTitle>
-          <Button variant="ghost" size="icon" className="absolute right-4 top-4" onClick={closeModal}>
-            <X className="h-4 w-4" />
-          </Button>
+          {/* Eliminamos el botón de cierre duplicado aquí, ya que DialogContent ya incluye uno */}
         </DialogHeader>
 
         <div className="relative h-48 w-full mb-4 overflow-hidden rounded-md">

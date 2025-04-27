@@ -58,7 +58,6 @@ const translations: Translations = {
   calculatorTitle: { es: "Calculadora de Precios", en: "Price Calculator" },
   squareMeters: { es: "Metros Cuadrados", en: "Square Meters" },
   projectType: { es: "Tipo de Proyecto", en: "Project Type" },
-  materials: { es: "Materiales", en: "Materials" },
   calculate: { es: "Calcular", en: "Calculate" },
   estimatedPrice: { es: "Precio Estimado", en: "Estimated Price" },
 
