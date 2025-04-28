@@ -10,9 +10,11 @@ import ThemeSwitcher from "@/components/theme-switcher"
 import CartButton from "@/components/cart-button"
 import { SearchModal } from "@/components/search-modal"
 import { useLanguage } from "@/context/language-context"
+import { regionSettings, useRegion } from "@/context/region-context"
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage()
+  const { regionData, setRegionData } = useRegion()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -25,8 +27,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleLanguage = () => {
-    setLanguage(language === "es" ? "en" : "es")
+  const toggleLanguage = () => {  
+    if(regionData.region === "pe") {
+      setRegionData(regionSettings["us"])
+      setLanguage(regionSettings["us"].lenguaje)
+    }else{
+      setRegionData(regionSettings["pe"])
+      setLanguage(regionSettings["pe"].lenguaje)
+    }
   }
 
   const scrollToSection = (sectionId: string) => {
@@ -101,7 +109,7 @@ export default function Navbar() {
             className="h-9 w-9 rounded-full mr-1"
             title={language === "es" ? "Switch to English" : "Cambiar a Español"}
           >
-            <span className="text-xs font-medium">{language === "es" ? "EN" : "ES"}</span>
+            <span className="text-xs font-medium">{regionData.region.toUpperCase()}</span>
           </Button>
 
           {/* Tema */}

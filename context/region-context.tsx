@@ -3,7 +3,11 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { getCookie } from "cookies-next"
 
+type Language = "es" | "en"
+
 type RegionData = {
+  region: string
+  lenguaje: Language
   currency: string
   currencySymbol: string
   address: string
@@ -12,28 +16,16 @@ type RegionData = {
 }
 
 type RegionContextType = {
-  region: string
-  regionData: RegionData
+  regionData: RegionData,
+  setRegionData: (regionData: RegionData) => void
 }
 
 // Datos específicos por región
-const regionSettings: Record<string, RegionData> = {
+export const regionSettings: Record<string, RegionData> = {
   // Países de habla hispana
-  es: {
-    currency: "EUR",
-    currencySymbol: "€",
-    address: "Calle Gran Vía 123, Madrid, España",
-    phone: "+34 91 123 45 67",
-    timeZone: "Europe/Madrid",
-  },
-  mx: {
-    currency: "MXN",
-    currencySymbol: "$",
-    address: "Av. Paseo de la Reforma 483, CDMX, México",
-    phone: "+52 55 1234 5678",
-    timeZone: "America/Mexico_City",
-  },
   pe: {
+    region: "pe",
+    lenguaje: "es",
     currency: "PEN",
     currencySymbol: "S/",
     address: "Av. Javier Prado Este 2875, San Borja, Lima, Perú",
@@ -42,45 +34,30 @@ const regionSettings: Record<string, RegionData> = {
   },
   // Países de habla inglesa
   us: {
+    region: "us",
+    lenguaje: "en",
     currency: "USD",
     currencySymbol: "$",
     address: "350 Fifth Avenue, New York, NY 10118, USA",
     phone: "+1 212 123 4567",
     timeZone: "America/New_York",
   },
-  gb: {
-    currency: "GBP",
-    currencySymbol: "£",
-    address: "20 Regent Street, London, SW1Y 4PH, UK",
-    phone: "+44 20 1234 5678",
-    timeZone: "Europe/London",
-  },
-  // Valor predeterminado
-  default: {
-    currency: "EUR",
-    currencySymbol: "€",
-    address: "Calle Gran Vía 123, Madrid, España",
-    phone: "+34 91 123 45 67",
-    timeZone: "Europe/Madrid",
-  },
 }
 
 const RegionContext = createContext<RegionContextType | undefined>(undefined)
 
 export function RegionProvider({ children }: { children: ReactNode }) {
-  const [region, setRegion] = useState<string>("default")
-  const [regionData, setRegionData] = useState<RegionData>(regionSettings.default)
+  const [regionData, setRegionData] = useState<RegionData>(regionSettings.pe)
 
   useEffect(() => {
     // Obtener la región del usuario desde la cookie establecida por el middleware
-    const userRegion = getCookie("user-region")?.toString() || "default"
-    setRegion(userRegion)
+    const userRegion = getCookie("user-region")?.toString() || regionSettings.pe.currency.toUpperCase()
 
     // Establecer los datos específicos de la región
-    setRegionData(regionSettings[userRegion] || regionSettings.default)
+    setRegionData(regionSettings[userRegion] || regionSettings.pe)
   }, [])
 
-  return <RegionContext.Provider value={{ region, regionData }}>{children}</RegionContext.Provider>
+  return <RegionContext.Provider value={{ regionData, setRegionData }}>{children}</RegionContext.Provider>
 }
 
 export function useRegion() {

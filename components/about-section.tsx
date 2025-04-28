@@ -117,25 +117,29 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-semibold mb-6">
-              <span className="text-accent">Ana Martínez</span> - Arquitecta
+              <span className="text-accent">{t("aboutFullName")}</span> - {t("aboutProfession")}
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">{t("aboutText")}</p>
 
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div>
-                <h4 className="font-semibold text-lg mb-2">Educación</h4>
+                <h4 className="font-semibold text-lg mb-2">{t("aboutEducation")}</h4>
                 <ul className="space-y-2 text-sm">
-                  <li>Universidad Politécnica de Madrid</li>
-                  <li>Master en Diseño Sostenible</li>
-                  <li>Certificación en Diseño Biofílico</li>
+                  {
+                    (t("aboutEducationList") as string[]).map((item: string, index: number) => (
+                      <li key={index}>{item}</li>
+                    ))
+                  }
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-lg mb-2">Experiencia</h4>
+                <h4 className="font-semibold text-lg mb-2">{t("aboutExperience")}</h4>
                 <ul className="space-y-2 text-sm">
-                  <li>10+ años de experiencia</li>
-                  <li>50+ proyectos completados</li>
-                  <li>Premios de diseño internacional</li>
+                  {
+                    (t("aboutExperienceList") as string[]).map((item: string, index: number) => (
+                      <li key={index}>{item}</li>
+                    ))
+                  }
                 </ul>
               </div>
             </div>

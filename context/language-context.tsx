@@ -7,8 +7,8 @@ type Language = "es" | "en"
 
 type Translations = {
   [key: string]: {
-    es: string
-    en: string
+    es: string | string[]
+    en: string | string[]
   }
 }
 
@@ -29,6 +29,32 @@ const translations: Translations = {
 
   // About
   aboutTitle: { es: "Sobre Mí", en: "About Me" },
+  aboutFullName: { es: "Ana Martínez", en: "Ana Martínez" },
+  aboutProfession: { es: "Arquitecta", en: "Architect" },
+  aboutEducation: { es: "Educación", en: "Education" },
+  aboutEducationList: {
+    es: [
+      "Universidad Politécnica de Madrid",
+      "Master en Diseño Sostenible",
+      "Certificación en Diseño Biofílico",
+    ], en: [
+      "University of Madrid",
+      "Master in Sustainable Design",
+      "Certification in Biophilic Design",
+    ]
+  },
+  aboutExperience: { es: "Experiencia", en: "Experience" },
+  aboutExperienceList: {
+    es: [
+      "10+ años de experiencia",
+      "50+ proyectos completados",
+      "Premios de diseño internacional",
+    ], en: [
+      "10+ years of experience",
+      "50+ completed projects",
+      "International design awards",
+    ]
+  },
   aboutText: {
     es: "Soy una arquitecta apasionada con más de 10 años de experiencia en el diseño de espacios únicos y funcionales. Mi filosofía se basa en la armonía entre estética, funcionalidad y sostenibilidad, creando proyectos que reflejan la personalidad y necesidades de cada cliente.",
     en: "I am a passionate architect with over 10 years of experience designing unique and functional spaces. My philosophy is based on the harmony between aesthetics, functionality, and sustainability, creating projects that reflect each client's personality and needs.",
@@ -70,6 +96,11 @@ const translations: Translations = {
 
   // Footer
   followUs: { es: "Síguenos", en: "Follow Us" },
+  footerDescription: {
+    es: "Creamos espacios que inspiran, transforman y perduran. Nuestro enfoque combina estética, funcionalidad y sostenibilidad para crear proyectos arquitectónicos excepcionales.",
+    en: "We create spaces that inspire, transform and last. Our approach combines aesthetics, functionality, and sustainability to create exceptional architectural projects.",
+  },
+  businnesHours: { es: "Horario", en: "Business Hours" },
   allRightsReserved: { es: "Todos los derechos reservados", en: "All rights reserved" },
 
   // About tabs
@@ -86,7 +117,7 @@ const translations: Translations = {
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: string) => string | string[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -102,7 +133,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const t = (key: string): string => {
+  const t = (key: string): string | string[] => {
     if (!translations[key]) {
       console.warn(`Translation key "${key}" not found.`)
       return key

@@ -18,8 +18,7 @@ export default function Footer() {
               <span className="text-accent">.</span>
             </Link>
             <p className="mt-4 text-primary-foreground/80 max-w-md">
-              Creamos espacios que inspiran, transforman y perduran. Nuestro enfoque combina estética, funcionalidad y
-              sostenibilidad para crear proyectos arquitectónicos excepcionales.
+              {t("footerDescription")}
             </p>
           </div>
 
@@ -76,7 +75,7 @@ export default function Footer() {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-4">Horario</h3>
+              <h3 className="text-lg font-semibold mb-4">{t("businnesHours")}</h3>
               <p className="text-primary-foreground/80">Lunes - Viernes: 9:00 - 18:00</p>
               <p className="text-primary-foreground/80">Sábado: 10:00 - 14:00</p>
             </div>
