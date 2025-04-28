@@ -2,25 +2,22 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { MessageCircle, Instagram, Facebook, Linkedin, X, ChevronUp, Phone } from "lucide-react"
+import { Instagram, Facebook, Linkedin, X, ChevronUp, Phone } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import { useRegion } from "@/context/region-context"
 
 export default function SocialFloatButtons() {
   const [isOpen, setIsOpen] = useState(false)
-  const { region } = useRegion()
+  const { regionData } = useRegion()
 
   // Configurar el número de WhatsApp según la región
   const getWhatsAppNumber = () => {
-    switch (region) {
+    switch (regionData.region) {
       case "pe":
         return "+51912345678"
-      case "mx":
-        return "+5215512345678"
       case "us":
         return "+12125551234"
-      default:
-        return "+34612345678" // España por defecto
     }
   }
 
@@ -50,7 +47,7 @@ export default function SocialFloatButtons() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition-colors"
               >
-                <MessageCircle size={24} />
+                <FaWhatsapp size={24} />
               </Link>
             </motion.div>
 
