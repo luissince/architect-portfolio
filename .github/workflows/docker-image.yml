@@ -1,0 +1,33 @@
+name: Docker Staging CI - Architec Porfolio
+
+# Definition of Triggering Events
+on:
+  push:
+    branches: 
+      - "master"
+      - "test"
+
+# Job Definitions
+jobs:
+  build-and-deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: self-hosted
+    environment: front-end
+
+    env:  
+      ENV: ${{ secrets.ENV }}
+      DEV_IP: ${{ secrets.DEV_IP }}
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Create .env file
+        run: |
+          cat > .env <<EOL
+          ENV="${{env.ENV}}"
+          DEV_IP="${{env.DEV_IP}}"
+          EOL
+
+      - name: Create and run container
+        run: docker compose -f docker-compose.yml up --build -d
