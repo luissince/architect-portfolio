@@ -5,10 +5,17 @@ import { getCookie } from "cookies-next"
 
 type Language = "es" | "en"
 
+export type PromoModalContent = {
+  title: string
+  description: string
+  image: string
+  cta: string
+}
+
 type Translations = {
   [key: string]: {
-    es: string | string[]
-    en: string | string[]
+    es: string | string[] | PromoModalContent
+    en: string | string[] | PromoModalContent
   }
 }
 
@@ -112,12 +119,32 @@ const translations: Translations = {
   officeLocation: { es: "Ubicación de la Oficina", en: "Office Location" },
   contactPhone: { es: "Teléfono de Contacto", en: "Contact Phone" },
   localCurrency: { es: "Moneda Local", en: "Local Currency" },
+
+  // Promo modal
+  promoModal: {
+    es: 
+      {
+        title: "Oferta Especial para Perú",
+        description: "Obtén un 20% de descuento en tu primera consulta arquitectónica. Válido hasta fin de mes.",
+        image: "/placeholder.svg?height=300&width=500",
+        cta: "Aprovechar oferta",
+      }
+    ,
+    en: 
+      {
+        title: "Promoción Exclusiva para México",
+        description: "Diseño de interiores con 15% de descuento para proyectos residenciales.",
+        image: "/placeholder.svg?height=300&width=500",
+        cta: "Ver detalles",
+      }
+    ,
+  }
 }
 
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string | string[]
+  t: (key: string) => string | string[] | PromoModalContent
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -133,7 +160,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const t = (key: string): string | string[] => {
+  const t = (key: string): string | string[] | PromoModalContent => {
     if (!translations[key]) {
       console.warn(`Translation key "${key}" not found.`)
       return key

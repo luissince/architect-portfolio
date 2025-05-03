@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useRouter, usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Menu, X, Search } from "lucide-react"
 
@@ -17,6 +18,8 @@ export default function Navbar() {
   const { regionData, setRegionData } = useRegion()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,32 +30,43 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleLanguage = () => {  
-    if(regionData.region === "pe") {
+  const toggleLanguage = () => {
+    if (regionData.region === "pe") {
       setRegionData(regionSettings["us"])
       setLanguage(regionSettings["us"].lenguaje)
-    }else{
+    } else {
       setRegionData(regionSettings["pe"])
       setLanguage(regionSettings["pe"].lenguaje)
     }
   }
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId)
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" })
-      setIsMobileMenuOpen(false)
+    // Cerrar el menú móvil si está abierto
+    setIsMobileMenuOpen(false)
+
+    // Verificar si estamos en la página principal
+    const isHomePage = pathname === "/"
+
+    if (isHomePage) {
+      // Si estamos en la página principal, hacemos scroll a la sección
+      const section = document.getElementById(sectionId)
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" })
+      }
+    } else {
+      // Si estamos en otra página, redirigimos a la página principal con un hash
+      router.push(`/#${sectionId}`)
     }
   }
 
   const navLinks = [
-    { href: "home", label: t("home") },
-    { href: "about", label: t("about") },
-    { href: "services", label: t("services") },
-    { href: "portfolio", label: "Portfolio" },
-    { href: "products", label: t("products") },
-    { href: "calculator", label: t("calculator") },
-    { href: "contact", label: t("contact") },
+    { href: "home", label: t("home") as string },
+    { href: "about", label: t("about") as string  },
+    { href: "services", label: t("services") as string  },
+    { href: "portfolio", label: t("portfolio") as string  },
+    { href: "products", label: t("products") as string  },
+    { href: "calculator", label: t("calculator") as string  },
+    { href: "contact", label: t("contact") as string  },
   ]
 
   return (

@@ -1,8 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useLanguage } from "@/context/language-context"
-import { useRegion } from "@/context/region-context"
+import { PromoModalContent, useLanguage } from "@/context/language-context"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
@@ -10,7 +9,6 @@ import Image from "next/image"
 export default function PromoModal() {
   const [isOpen, setIsOpen] = useState(false)
   const { t } = useLanguage()
-  const { region, regionData } = useRegion()
 
   useEffect(() => {
     // Verificar si el modal ya se mostró anteriormente (en las últimas 24 horas)
@@ -33,60 +31,24 @@ export default function PromoModal() {
     localStorage.setItem("promo-modal-last-shown", new Date().getTime().toString())
   }
 
-  // Contenido específico por región
-  const getPromoContent = () => {
-    // Promociones específicas por región
-    switch (region) {
-      case "pe":
-        return {
-          title: "Oferta Especial para Perú",
-          description: "Obtén un 20% de descuento en tu primera consulta arquitectónica. Válido hasta fin de mes.",
-          image: "/placeholder.svg?height=300&width=500",
-          cta: "Aprovechar oferta",
-        }
-      case "mx":
-        return {
-          title: "Promoción Exclusiva para México",
-          description: "Diseño de interiores con 15% de descuento para proyectos residenciales.",
-          image: "/placeholder.svg?height=300&width=500",
-          cta: "Ver detalles",
-        }
-      case "us":
-      case "gb":
-        return {
-          title: "Special Offer",
-          description: "Get a free initial consultation for any architectural project.",
-          image: "/placeholder.svg?height=300&width=500",
-          cta: "Learn More",
-        }
-      default:
-        return {
-          title: "Bienvenido a nuestro Estudio",
-          description: "Descubre nuestros servicios de arquitectura y diseño de interiores.",
-          image: "/placeholder.svg?height=300&width=500",
-          cta: "Explorar servicios",
-        }
-    }
-  }
-
-  const promoContent = getPromoContent()
+  const promoModal = t("promoModal") as PromoModalContent
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">{promoContent.title}</DialogTitle>
+          <DialogTitle className="text-xl font-bold">{promoModal.title}</DialogTitle>
           {/* Eliminamos el botón de cierre duplicado aquí, ya que DialogContent ya incluye uno */}
         </DialogHeader>
 
         <div className="relative h-48 w-full mb-4 overflow-hidden rounded-md">
-          <Image src={promoContent.image || "/placeholder.svg"} alt="Promotional image" fill className="object-cover" />
+          <Image src={promoModal.image || "/placeholder.svg"} alt="Promotional image" fill className="object-cover" />
         </div>
 
-        <DialogDescription className="text-center mb-4">{promoContent.description}</DialogDescription>
+        <DialogDescription className="text-center mb-4">{promoModal.description}</DialogDescription>
 
         <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" onClick={closeModal}>
-          {promoContent.cta}
+          {promoModal.cta}
         </Button>
       </DialogContent>
     </Dialog>
