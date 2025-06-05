@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:    
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/md-html-to-pdf/architect-portfolio:latest
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/architect-portfolio:latest
     container_name: architect-portfolio
     ports:
       - 6000:3000
