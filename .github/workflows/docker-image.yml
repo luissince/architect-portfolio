@@ -1,33 +1,113 @@
 name: Docker Staging CI - Architec Porfolio
 
-# Definition of Triggering Events
 on:
   push:
-    branches: 
-      - "master"
-      - "test"
+    branches:
+      - master
 
-# Job Definitions
 jobs:
-  build-and-deploy:
+  build-nextjs:
+    name: Build Front-End (NextJs)
     if: github.ref == 'refs/heads/master'
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: front-end
-
-    env:  
-      ENV: ${{ secrets.ENV }}
-      DEV_IP: ${{ secrets.DEV_IP }}
 
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Create .env file
+      - name: Crear archivo .env
         run: |
-          cat > .env <<EOL
-          ENV="${{env.ENV}}"
-          DEV_IP="${{env.DEV_IP}}"
+          cat > apps/next-app/.env <<EOL
+          ENV="${{secrets.ENV}}"
+          DEV_IP="${{secrets.DEV_IP}}"
           EOL
 
-      - name: Create and run container
-        run: docker compose -f docker-compose.yml up --build -d
+      - name: Construyendo contenedor NextJs
+        run: docker compose -f docker-compose.build.yml build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1 
+
+      - name: Tag front-end image
+        run: docker tag architect-portfolio ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/architect-portfolio:latest
+
+      - name: Push front-end image to ECR
+        run: docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/architect-portfolio:latest
+
+  deploy-nextjs:
+    name: Deploy Front-End (NextJs)
+    if: github.ref == 'refs/heads/master'
+    runs-on: self-hosted
+    needs: build-nextjs
+
+    environment: front-end
+
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Descargar imagen desde ECR
+        run: docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/architect-portfolio:latest
+
+      - name: Crear y ejecutar contenedor en producción
+        run: docker compose -f docker-compose.prod.yml up -d
+      
+      - name: Eliminar imágenes locales
+        run: docker image prune -af || true
+
+  clean-ecr-images:
+    name: Borrar imágenes antiguas de ECR
+    runs-on: ubuntu-latest
+    needs: [build-nextjs]
+    environment: front-end
+
+    steps:
+      - name: Configurar credenciales AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Instalar jq
+        run: sudo apt-get install -y jq
+
+      - name: Borrar imágenes sin tag 'latest' - Frontend
+        run: |
+          REPO="architect-portfolio"
+
+           # 1. Obtener todas las imágenes (excepto latest)
+            aws ecr list-images --repository-name $REPO \
+              --query 'imageIds[?type(imageTag)==`null` || imageTag!=`latest`]' \
+              --output json > images.json
+
+            # 2. Verificar si hay imágenes para borrar
+            if [ $(jq -e 'length > 0' images.json) = "true" ]; then
+              echo "Borrando $(jq length images.json) imágenes antiguas..."
+              aws ecr batch-delete-image --repository-name $REPO --image-ids file://images.json
+            else
+              echo "No hay imágenes antiguas para borrar en $REPO"
+            fi
+  

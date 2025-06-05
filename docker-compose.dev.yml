@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  architect-portfolio-services:
+    container_name: architect-portfolio-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3333:3000

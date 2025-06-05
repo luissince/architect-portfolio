@@ -2,13 +2,15 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Instagram, Facebook, Linkedin, X, ChevronUp, Phone } from "lucide-react"
+import { Instagram, Facebook, Linkedin, X, ChevronUp, Phone, Bot } from "lucide-react"
 import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import { useRegion } from "@/context/region-context"
+import VirtualAssistantModal from "./virtual-assistant-modal"
 
 export default function SocialFloatButtons() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isAssistantOpen, setIsAssistantOpen] = useState(false)
   const { regionData } = useRegion()
 
   // Configurar el número de WhatsApp según la región
@@ -22,6 +24,7 @@ export default function SocialFloatButtons() {
   }
 
   const toggleOpen = () => setIsOpen(!isOpen)
+  const toggleAssistant = () => setIsAssistantOpen(!isAssistantOpen)
 
   const buttonVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -37,10 +40,21 @@ export default function SocialFloatButtons() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2">
+      <VirtualAssistantModal isOpen={isAssistantOpen} onClose={() => setIsAssistantOpen(false)} />
+
       <AnimatePresence>
         {isOpen && (
           <>
             <motion.div initial="hidden" animate="visible" exit="hidden" custom={0} variants={buttonVariants}>
+              <button
+                onClick={toggleAssistant}
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-600 text-white shadow-lg hover:bg-purple-700 transition-colors"
+              >
+                <Bot size={24} />
+              </button>
+            </motion.div>
+
+            <motion.div initial="hidden" animate="visible" exit="hidden" custom={1} variants={buttonVariants}>
               <Link
                 href={`https://wa.me/${getWhatsAppNumber()}`}
                 target="_blank"
@@ -51,7 +65,7 @@ export default function SocialFloatButtons() {
               </Link>
             </motion.div>
 
-            <motion.div initial="hidden" animate="visible" exit="hidden" custom={1} variants={buttonVariants}>
+            <motion.div initial="hidden" animate="visible" exit="hidden" custom={2} variants={buttonVariants}>
               <Link
                 href="https://instagram.com"
                 target="_blank"
@@ -62,7 +76,7 @@ export default function SocialFloatButtons() {
               </Link>
             </motion.div>
 
-            <motion.div initial="hidden" animate="visible" exit="hidden" custom={2} variants={buttonVariants}>
+            <motion.div initial="hidden" animate="visible" exit="hidden" custom={3} variants={buttonVariants}>
               <Link
                 href="https://facebook.com"
                 target="_blank"
@@ -73,7 +87,7 @@ export default function SocialFloatButtons() {
               </Link>
             </motion.div>
 
-            <motion.div initial="hidden" animate="visible" exit="hidden" custom={3} variants={buttonVariants}>
+            <motion.div initial="hidden" animate="visible" exit="hidden" custom={4} variants={buttonVariants}>
               <Link
                 href="https://linkedin.com"
                 target="_blank"
@@ -84,7 +98,7 @@ export default function SocialFloatButtons() {
               </Link>
             </motion.div>
 
-            <motion.div initial="hidden" animate="visible" exit="hidden" custom={4} variants={buttonVariants}>
+            <motion.div initial="hidden" animate="visible" exit="hidden" custom={5} variants={buttonVariants}>
               <Link
                 href="tel:+123456789"
                 className="flex items-center justify-center w-12 h-12 rounded-full bg-accent text-white shadow-lg hover:bg-accent/90 transition-colors"

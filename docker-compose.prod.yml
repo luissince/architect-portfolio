@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:    
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/md-html-to-pdf/architect-portfolio:latest
+    container_name: architect-portfolio
+    ports:
+      - 6000:3000
+    networks:
+      - luis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512m"
+        reservations:
+          cpus: "0.25"
+          memory: "256m"
+    restart: always
+
+networks:
+  luis:
+    external: true

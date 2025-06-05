@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  app:
+    image: architect-portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: architect-portfolio

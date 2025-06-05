@@ -28,7 +28,7 @@ export default function ProductsSection() {
         name: "Silla Minimalista",
         price: 450,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 10,
       },
       {
@@ -36,7 +36,7 @@ export default function ProductsSection() {
         name: "Mesa de Centro",
         price: 780,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 8,
       },
       {
@@ -44,7 +44,7 @@ export default function ProductsSection() {
         name: "Sofá Modular",
         price: 1250,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 9,
       },
       {
@@ -52,7 +52,7 @@ export default function ProductsSection() {
         name: "Estantería Flotante",
         price: 320,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 7,
       },
       {
@@ -60,7 +60,7 @@ export default function ProductsSection() {
         name: "Sillón Reclinable",
         price: 890,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 6,
       },
       {
@@ -68,7 +68,7 @@ export default function ProductsSection() {
         name: "Mesa de Comedor",
         price: 1100,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 5,
       },
     ],
@@ -78,7 +78,7 @@ export default function ProductsSection() {
         name: "Lámpara Geométrica",
         price: 180,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 10,
       },
       {
@@ -86,7 +86,7 @@ export default function ProductsSection() {
         name: "Jarrón Artesanal",
         price: 95,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 8,
       },
       {
@@ -94,16 +94,16 @@ export default function ProductsSection() {
         name: "Espejo Circular",
         price: 210,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 9,
       },
-      { id: "d4", name: "Set de Cojines", price: 120, image: "/placeholder.svg?height=400&width=400", popularity: 7 },
+      { id: "d4", name: "Set de Cojines", price: 120, image: "imagen3.png", popularity: 7 },
       {
         id: "d5",
         name: "Cuadro Abstracto",
         price: 250,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 6,
       },
       {
@@ -111,7 +111,7 @@ export default function ProductsSection() {
         name: "Reloj de Pared",
         price: 85,
         unit: "unid.",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 5,
       },
     ],
@@ -121,7 +121,7 @@ export default function ProductsSection() {
         name: "Mármol Carrara",
         price: 180,
         unit: "m²",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 10,
       },
       {
@@ -129,7 +129,7 @@ export default function ProductsSection() {
         name: "Madera de Roble",
         price: 95,
         unit: "m²",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 9,
       },
       {
@@ -137,7 +137,7 @@ export default function ProductsSection() {
         name: "Concreto Pulido",
         price: 75,
         unit: "m²",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 8,
       },
       {
@@ -145,7 +145,7 @@ export default function ProductsSection() {
         name: "Latón Cepillado",
         price: 220,
         unit: "m²",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 7,
       },
       {
@@ -153,7 +153,7 @@ export default function ProductsSection() {
         name: "Piedra Natural",
         price: 150,
         unit: "m²",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 6,
       },
       {
@@ -161,7 +161,7 @@ export default function ProductsSection() {
         name: "Vidrio Templado",
         price: 190,
         unit: "m²",
-        image: "/placeholder.svg?height=400&width=400",
+        image: "imagen3.png",
         popularity: 5,
       },
     ],
@@ -189,15 +189,15 @@ export default function ProductsSection() {
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          {t("productsTitle")}
+          {t("productsTitle").toString()}
         </motion.h2>
 
         <Tabs defaultValue="furniture" className="w-full" onValueChange={setActiveTab}>
           <div className="flex justify-center mb-12">
             <TabsList className="grid w-full max-w-md grid-cols-3">
-              <TabsTrigger value="furniture">{t("furniture")}</TabsTrigger>
-              <TabsTrigger value="decoration">{t("decoration")}</TabsTrigger>
-              <TabsTrigger value="materials">{t("materials")}</TabsTrigger>
+              <TabsTrigger value="furniture">{t("furniture").toString()}</TabsTrigger>
+              <TabsTrigger value="decoration">{t("decoration").toString()}</TabsTrigger>
+              <TabsTrigger value="materials">{t("materials").toString()}</TabsTrigger>
             </TabsList>
           </div>
 

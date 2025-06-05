@@ -23,7 +23,6 @@ export default function PriceCalculator() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
 
   const calculatePrice = () => {
-    // Base price per square meter
     let basePrice = 0
 
     switch (projectType) {
@@ -38,7 +37,6 @@ export default function PriceCalculator() {
         break
     }
 
-    // Material quality multiplier
     let qualityMultiplier = 1
 
     switch (materialQuality) {
@@ -56,27 +54,32 @@ export default function PriceCalculator() {
         break
     }
 
-    // Calculate final price in local currency
     const finalPrice = basePrice * squareMeters * qualityMultiplier
 
     setEstimatedPrice(finalPrice)
   }
 
-  // Función para formatear el precio según la moneda local
   const formatPrice = (price: number) => {
     if (!price) return ""
-
-    // Formatear según la moneda de la región
     return `${regionData.currencySymbol}${price.toLocaleString()}`
   }
 
   return (
-    <section
-      id="calculator"
-      className="py-20 bg-background parallax"
-      style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920')" }}
-    >
-      <div className="container mx-auto px-4">
+    <section id="calculator" className="py-20 bg-background parallax relative">
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          className="object-cover w-full h-full"
+        >
+          <source src="/video3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto">
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-16 text-white"
@@ -85,7 +88,7 @@ export default function PriceCalculator() {
             transition={{ duration: 0.6 }}
             ref={ref}
           >
-            {t("calculatorTitle")}
+            {t("calculatorTitle").toString()}
           </motion.h2>
 
           <motion.div
@@ -95,13 +98,13 @@ export default function PriceCalculator() {
           >
             <Card className="backdrop-blur-md bg-background/80">
               <CardHeader>
-                <CardTitle>{t("calculatorTitle")}</CardTitle>
+                <CardTitle>{t("calculatorTitle").toString()}</CardTitle>
                 <CardDescription>Calcule el costo estimado de su proyecto arquitectónico</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="square-meters">
-                    {t("squareMeters")}: {squareMeters} m²
+                    {t("squareMeters").toString()}: {squareMeters} m²
                   </Label>
                   <Slider
                     id="square-meters"
@@ -114,7 +117,7 @@ export default function PriceCalculator() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="project-type">{t("projectType")}</Label>
+                  <Label htmlFor="project-type">{t("projectType").toString()}</Label>
                   <Select value={projectType} onValueChange={setProjectType}>
                     <SelectTrigger>
                       <SelectValue placeholder="Seleccione tipo de proyecto" />
@@ -128,7 +131,7 @@ export default function PriceCalculator() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="material-quality">{t("materials")}</Label>
+                  <Label htmlFor="material-quality">{t("materials").toString()}</Label>
                   <Select value={materialQuality} onValueChange={setMaterialQuality}>
                     <SelectTrigger>
                       <SelectValue placeholder="Seleccione calidad de materiales" />
@@ -143,12 +146,12 @@ export default function PriceCalculator() {
                 </div>
 
                 <Button onClick={calculatePrice} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                  {t("calculate")}
+                  {t("calculate").toString()}
                 </Button>
 
                 {estimatedPrice !== null && (
                   <div className="mt-6 p-4 bg-muted rounded-lg">
-                    <h3 className="font-semibold mb-2">{t("estimatedPrice")}:</h3>
+                    <h3 className="font-semibold mb-2">{t("estimatedPrice").toString()}:</h3>
                     <p className="text-2xl font-bold text-accent">{formatPrice(estimatedPrice)}</p>
                     <p className="text-sm text-muted-foreground mt-2">
                       *Este es un precio estimado. Contáctenos para un presupuesto detallado.

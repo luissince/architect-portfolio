@@ -39,9 +39,9 @@ export default function PortfolioSection() {
       location: "Madrid, España",
       year: "2022",
       images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
       ],
       client: "Familia Rodríguez",
     },
@@ -54,9 +54,9 @@ export default function PortfolioSection() {
       location: "Barcelona, España",
       year: "2021",
       images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
       ],
       client: "Nexus Innovations",
     },
@@ -69,9 +69,9 @@ export default function PortfolioSection() {
       location: "Valencia, España",
       year: "2023",
       images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
       ],
       client: "Grupo Gastronómico Mediterráneo",
     },
@@ -84,9 +84,9 @@ export default function PortfolioSection() {
       location: "Sevilla, España",
       year: "2020",
       images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
       ],
       client: "Sr. y Sra. Martín",
     },
@@ -99,9 +99,9 @@ export default function PortfolioSection() {
       location: "Bilbao, España",
       year: "2022",
       images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
       ],
       client: "Ayuntamiento de Bilbao",
     },
@@ -114,9 +114,9 @@ export default function PortfolioSection() {
       location: "Málaga, España",
       year: "2021",
       images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
+        "/imagen2.jpg",
       ],
       client: "Familia Navarro",
     },
@@ -138,17 +138,17 @@ export default function PortfolioSection() {
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          {t("portfolioTitle")}
+          {t("portfolioTitle").toString()}
         </motion.h2>
 
         <Tabs defaultValue="all" className="w-full mb-12" onValueChange={setActiveCategory}>
           <div className="flex justify-center">
             <TabsList className="grid grid-cols-5 w-full max-w-2xl">
-              <TabsTrigger value="all">{t("allProjects")}</TabsTrigger>
-              <TabsTrigger value="residential">{t("residential")}</TabsTrigger>
-              <TabsTrigger value="commercial">{t("commercial")}</TabsTrigger>
-              <TabsTrigger value="renovation">{t("renovation")}</TabsTrigger>
-              <TabsTrigger value="public">{t("public")}</TabsTrigger>
+              <TabsTrigger value="all">{t("allProjects").toString()}</TabsTrigger>
+              <TabsTrigger value="residential">{t("residential").toString()}</TabsTrigger>
+              <TabsTrigger value="commercial">{t("commercial").toString()}</TabsTrigger>
+              <TabsTrigger value="renovation">{t("renovation").toString()}</TabsTrigger>
+              <TabsTrigger value="public">{t("public").toString()}</TabsTrigger>
             </TabsList>
           </div>
         </Tabs>
@@ -171,12 +171,12 @@ export default function PortfolioSection() {
                     <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
                     <p className="text-sm opacity-90">
                       {project.category === "residential"
-                        ? t("residential")
+                        ? t("residential").toString()
                         : project.category === "commercial"
-                          ? t("commercial")
+                          ? t("commercial").toString()
                           : project.category === "renovation"
-                            ? t("renovation")
-                            : t("public")}{" "}
+                            ? t("renovation").toString()
+                            : t("public").toString()}{" "}
                       | {project.year}
                     </p>
                   </div>

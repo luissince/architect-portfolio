@@ -92,7 +92,7 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          {t("aboutTitle")}
+          {t("aboutTitle").toString()}
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
@@ -103,7 +103,7 @@ export default function AboutSection() {
           >
             <div className="relative h-[500px] rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=800&width=600"
+                src="/imagen1.png"
                 alt="Architect portrait"
                 fill
                 className="object-cover"
@@ -117,13 +117,13 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-semibold mb-6">
-              <span className="text-accent">{t("aboutFullName")}</span> - {t("aboutProfession")}
+              <span className="text-accent">{t("aboutFullName").toString()}</span> - {t("aboutProfession").toString()}
             </h3>
-            <p className="text-muted-foreground mb-6 leading-relaxed">{t("aboutText")}</p>
+            <p className="text-muted-foreground mb-6 leading-relaxed">{t("aboutText").toString()}</p>
 
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div>
-                <h4 className="font-semibold text-lg mb-2">{t("aboutEducation")}</h4>
+                <h4 className="font-semibold text-lg mb-2">{t("aboutEducation").toString()}</h4>
                 <ul className="space-y-2 text-sm">
                   {
                     (t("aboutEducationList") as string[]).map((item: string, index: number) => (
@@ -133,7 +133,7 @@ export default function AboutSection() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-lg mb-2">{t("aboutExperience")}</h4>
+                <h4 className="font-semibold text-lg mb-2">{t("aboutExperience").toString()}</h4>
                 <ul className="space-y-2 text-sm">
                   {
                     (t("aboutExperienceList") as string[]).map((item: string, index: number) => (

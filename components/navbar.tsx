@@ -12,6 +12,8 @@ import CartButton from "@/components/cart-button"
 import { SearchModal } from "@/components/search-modal"
 import { useLanguage } from "@/context/language-context"
 import { regionSettings, useRegion } from "@/context/region-context"
+import { UserNav } from "@/components/user-nav"
+import Image from "next/image"
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage()
@@ -61,19 +63,17 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "home", label: t("home") as string },
-    { href: "about", label: t("about") as string  },
-    { href: "services", label: t("services") as string  },
-    { href: "portfolio", label: t("portfolio") as string  },
-    { href: "products", label: t("products") as string  },
-    { href: "calculator", label: t("calculator") as string  },
-    { href: "contact", label: t("contact") as string  },
+    { href: "about", label: t("about") as string },
+    { href: "services", label: t("services") as string },
+    { href: "portfolio", label: t("portfolio") as string },
+    { href: "products", label: t("products") as string },
+    { href: "calculator", label: t("calculator") as string },
+    { href: "contact", label: t("contact") as string },
   ]
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled || isMobileMenuOpen ? "bg-background/90 backdrop-blur-md shadow-md" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-background/90 backdrop-blur-md shadow-md`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -81,8 +81,9 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-playfair font-bold">
-          <span className="text-primary">ESTUDIO</span>
-          <span className="text-accent">.</span>
+          <Image src="/logo.png" alt="Logo" width={100} height={100} />
+          {/* <span className="text-primary">ESTUDIO</span>
+          <span className="text-accent">.</span> */}
         </Link>
 
         {/* Desktop Navigation - Centrado */}
@@ -129,6 +130,11 @@ export default function Navbar() {
           {/* Tema */}
           <div className="mr-1">
             <ThemeSwitcher />
+          </div>
+
+          {/* Usuario */}
+          <div className="mr-1">
+            <UserNav />
           </div>
 
           {/* Carrito */}

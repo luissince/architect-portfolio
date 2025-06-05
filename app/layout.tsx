@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/context/language-context"
 import { RegionProvider } from "@/context/region-context"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CartProvider } from "@/context/cart-context"
+import { AuthProvider } from "@/context/auth-context"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Estudio de Arquitectura | Portfolio",
   description: "Portfolio profesional de arquitectura con proyectos, servicios y productos",
-    generator: 'v0.dev'
+  generator: "SysSoft Integra",
 }
 
 export default function RootLayout({
@@ -34,7 +35,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <RegionProvider>
             <LanguageProvider>
-              <CartProvider>{children}</CartProvider>
+              <AuthProvider>
+                <CartProvider>{children}</CartProvider>
+              </AuthProvider>
             </LanguageProvider>
           </RegionProvider>
         </ThemeProvider>

@@ -2,7 +2,6 @@
 
 import { useLanguage } from "@/context/language-context"
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 
@@ -11,15 +10,17 @@ export default function HeroBanner() {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Modern architectural design"
-          fill
-          priority
-          className="object-cover"
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          className="object-cover w-full h-full"
+        >
+          <source src="/video2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
@@ -31,7 +32,7 @@ export default function HeroBanner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {t("heroTitle")}
+          {t("heroTitle").toString()}
         </motion.h1>
 
         <motion.p
@@ -40,7 +41,7 @@ export default function HeroBanner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {t("heroSubtitle")}
+          {t("heroSubtitle").toString()}
         </motion.p>
 
         <motion.div
