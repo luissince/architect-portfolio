@@ -7,7 +7,7 @@ services:
     ports:
       - 6000:3000
     networks:
-      - luis
+      - ubuntu_default
     deploy:
       resources:
         limits:
@@ -19,5 +19,5 @@ services:
     restart: always
 
 networks:
-  luis:
+  ubuntu_default:
     external: true
