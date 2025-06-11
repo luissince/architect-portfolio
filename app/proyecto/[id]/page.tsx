@@ -11,6 +11,7 @@ import SocialFloatButtons from "@/components/social-float-buttons"
 import CommentsSection, { type Comment, type CommentReply } from "@/components/comments-section"
 import { v4 as uuidv4 } from "uuid"
 import ImageGallery from "@/components/image-gallery"
+import Model3DViewer from "@/components/model-viewer-3d"
 
 // Datos simulados de proyectos con modelos 3D y videos
 const projects = [
@@ -258,8 +259,15 @@ export default function ProjectDetailPage() {
             </div>
 
             {/* Visualización según el modo seleccionado */}
-            
+
+            {/* <ImageGallery images={project.images} videos={project.videos || []} alt={project.title} /> */}
+            {viewMode === "gallery" ? (
               <ImageGallery images={project.images} videos={project.videos || []} alt={project.title} />
+            ) : (
+              project.model3d && (
+                <Model3DViewer modelUrl={project.model3d} alt={project.title} />
+              )
+            )}
 
             <div className="prose max-w-none mb-12 mt-8">
               <h2 className="text-2xl font-semibold mb-4">Descripción del Proyecto</h2>
