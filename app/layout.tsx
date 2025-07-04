@@ -19,7 +19,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Estudio de Arquitectura | Portfolio",
+  title: "Estudio de Arquitectura | Decorganika",
   description: "Portfolio profesional de arquitectura con proyectos, servicios y productos",
   generator: "SysSoft Integra",
 }

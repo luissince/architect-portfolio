@@ -40,17 +40,17 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-neutral-50">
       <Suspense fallback={<LoadingAnimation />}>
-        <WelcomeAnimation />
+        {/* <WelcomeAnimation /> */}
         <Navbar />
         <HeroBanner />
         <AboutSection />
         <ServicesSection />
         <PortfolioSection />
-        <ProductsSection />
+        {/* <ProductsSection /> */}
         <PriceCalculator />
         <ContactSection />
         <Footer />
-        <PromoModal />
+        {/* <PromoModal /> */}
         <SocialFloatButtons />
       </Suspense>
     </main>

@@ -301,7 +301,7 @@ export default function ProjectDetailPage() {
             </div>
 
             {/* Sección de comentarios y preguntas */}
-            <div className="mb-12">
+            {/* <div className="mb-12">
               <CommentsSection
                 itemTitle={project.title}
                 comments={comments}
@@ -310,7 +310,7 @@ export default function ProjectDetailPage() {
                 onLikeComment={handleLikeComment}
                 onLikeReply={handleLikeReply}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:col-span-1">

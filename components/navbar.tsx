@@ -66,7 +66,7 @@ export default function Navbar() {
     { href: "about", label: t("about") as string },
     { href: "services", label: t("services") as string },
     { href: "portfolio", label: t("portfolio") as string },
-    { href: "products", label: t("products") as string },
+    // { href: "products", label: t("products") as string },
     { href: "calculator", label: t("calculator") as string },
     { href: "contact", label: t("contact") as string },
   ]
@@ -133,12 +133,12 @@ export default function Navbar() {
           </div>
 
           {/* Usuario */}
-          <div className="mr-1">
+          {/* <div className="mr-1">
             <UserNav />
-          </div>
+          </div> */}
 
           {/* Carrito */}
-          <CartButton />
+          {/* <CartButton /> */}
 
           {/* Menú móvil */}
           <Button

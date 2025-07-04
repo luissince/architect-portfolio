@@ -101,14 +101,14 @@ export default function AboutSection() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative h-[500px] rounded-lg overflow-hidden">
-              <Image
-                src="/imagen1.png"
-                alt="Architect portrait"
-                fill
-                className="object-cover"
-              />
-            </div>
+          <div className="relative h-[500px] rounded-lg overflow-hidden">
+  <Image
+    src="/iam.jpeg"
+    alt="Architect portrait"
+    fill
+    className="object-cover object-top"
+  />
+</div>
           </motion.div>
 
           <motion.div

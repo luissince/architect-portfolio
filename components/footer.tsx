@@ -14,11 +14,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="text-2xl font-playfair font-bold">
-              <span className="text-primary-foreground">ESTUDIO</span>
-              <span className="text-accent">.</span>
+              <span className="text-primary-foreground">DECORGANIKA</span>
+              {/* <span className="text-accent">.</span> */}
             </Link>
             <p className="mt-4 text-primary-foreground/80 max-w-md">
-              {t("footerDescription")}
+              {t("footerDescription").toString()}
             </p>
           </div>
 
@@ -27,34 +27,34 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="#home" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  {t("home")}
+                  {t("home").toString()}
                 </Link>
               </li>
               <li>
                 <Link href="#about" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  {t("about")}
+                  {t("about").toString()}
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  {t("services")}
+                  {t("services").toString()}
                 </Link>
               </li>
               <li>
                 <Link href="#products" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  {t("products")}
+                  {t("products").toString()}
                 </Link>
               </li>
               <li>
                 <Link href="#contact" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  {t("contact")}
+                  {t("contact").toString()}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">{t("followUs")}</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("followUs").toString()}</h3>
             <div className="flex space-x-4">
               <Link href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">
                 <Instagram className="h-5 w-5" />
@@ -75,7 +75,7 @@ export default function Footer() {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-4">{t("businnesHours")}</h3>
+              <h3 className="text-lg font-semibold mb-4">{t("businnesHours").toString()}</h3>
               <p className="text-primary-foreground/80">Lunes - Viernes: 9:00 - 18:00</p>
               <p className="text-primary-foreground/80">Sábado: 10:00 - 14:00</p>
             </div>
@@ -84,7 +84,7 @@ export default function Footer() {
 
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-primary-foreground/60">
           <p>
-            © {currentYear} ESTUDIO. {t("allRightsReserved")}.
+            © {currentYear} DECORGANIKA. {t("allRightsReserved").toString()}.
           </p>
         </div>
       </div>
