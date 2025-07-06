@@ -23,7 +23,7 @@ export default function ServicesSection() {
     {
       id: 1,
       icon: <Home className="h-10 w-10 text-accent" />,
-      title: t("interiorDesign"),
+      title: t("interiorDesign").toString(),
       description:
         "Transformamos espacios interiores para crear ambientes funcionales y estéticamente atractivos que reflejen su personalidad y estilo de vida.",
       fullDescription:
@@ -40,7 +40,7 @@ export default function ServicesSection() {
     {
       id: 2,
       icon: <Compass className="h-10 w-10 text-accent" />,
-      title: t("architecturalPlans"),
+      title: t("architecturalPlans").toString(),
       description:
         "Desarrollamos planos arquitectónicos detallados y precisos para proyectos residenciales, comerciales e institucionales.",
       fullDescription:
@@ -57,7 +57,7 @@ export default function ServicesSection() {
     {
       id: 3,
       icon: <Lightbulb className="h-10 w-10 text-accent" />,
-      title: t("consulting"),
+      title: t("consulting").toString(),
       description:
         "Ofrecemos asesoramiento experto en todas las etapas de su proyecto, desde la conceptualización inicial hasta la finalización.",
       fullDescription:
@@ -92,7 +92,7 @@ export default function ServicesSection() {
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          {t("servicesTitle")}
+          {t("servicesTitle").toString()}
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -101,14 +101,14 @@ export default function AboutSection() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-          <div className="relative h-[500px] rounded-lg overflow-hidden">
-  <Image
-    src="/iam.jpeg"
-    alt="Architect portrait"
-    fill
-    className="object-cover object-top"
-  />
-</div>
+            <div className="relative h-[500px] rounded-lg overflow-hidden">
+              <Image
+                src="/iam.jpeg"
+                alt="Architect portrait"
+                fill
+                className="object-cover object-top"
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -117,7 +117,7 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-semibold mb-6">
-              <span className="text-accent">{t("aboutFullName").toString()}</span> - {t("aboutProfession").toString()}
+              <span className="text-primary">{t("aboutFullName").toString()}</span> - <span className="text-accent font-bold">{t("aboutProfession").toString()}</span>
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">{t("aboutText").toString()}</p>
 

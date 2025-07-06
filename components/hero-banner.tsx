@@ -59,7 +59,7 @@ export default function HeroBanner() {
               }
             }}
           >
-            Portfolio
+            {t("portfolio").toString()}
           </Button>
         </motion.div>
       </div>

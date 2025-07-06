@@ -13,6 +13,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
+import { MdOutlineEmail, MdPhone, } from "react-icons/md"
+import { GiPositionMarker } from "react-icons/gi";
+import { BiCoin } from "react-icons/bi";
 
 export default function ContactSection() {
   const { t } = useLanguage()
@@ -39,7 +42,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          {t("contactTitle")}
+          {t("contactTitle").toString()}
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -50,108 +53,49 @@ export default function ContactSection() {
           >
             <div className="h-full flex flex-col justify-center">
               <h3 className="text-2xl font-semibold mb-6">
-                Hablemos sobre su <span className="text-accent">proyecto</span>
+                {t("contactTitle").toString()}
               </h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Estamos aquí para ayudarle a dar vida a sus ideas. Contáctenos para discutir su proyecto y descubrir
-                cómo podemos colaborar para crear espacios excepcionales.
+                {t("contactDescription").toString()}
               </p>
 
               <div className="space-y-4">
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-accent"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
+                    <MdPhone className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-medium">{t("contactPhone")}</h4>
+                    <h4 className="font-medium">{t("contactPhone").toString()}</h4>
                     <p className="text-muted-foreground">{regionData.phone}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-accent"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
+                    <MdOutlineEmail className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-medium">Email</h4>
-                    <p className="text-muted-foreground">info@estudio-arquitectura.com</p>
+                    <h4 className="font-medium">{t("emailAddress").toString()}</h4>
+                    <p className="text-muted-foreground">{regionData.email}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-accent"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
+                    <GiPositionMarker className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-medium">{t("officeLocation")}</h4>
+                    <h4 className="font-medium">{t("officeLocation").toString()}</h4>
                     <p className="text-muted-foreground">{regionData.address}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-accent"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
+                    <BiCoin className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-medium">{t("localCurrency")}</h4>
+                    <h4 className="font-medium">{t("localCurrency").toString()}</h4>
                     <p className="text-muted-foreground">
                       {regionData.currency} ({regionData.currencySymbol})
                     </p>
@@ -168,9 +112,9 @@ export default function ContactSection() {
           >
             <Card>
               <CardHeader>
-                <CardTitle>{t("contactTitle")}</CardTitle>
+                <CardTitle>{t("contactFormTitle").toString()}</CardTitle>
                 <CardDescription>
-                  Envíenos un mensaje y nos pondremos en contacto con usted lo antes posible.
+                  {t("contactFormSubTitle").toString()}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -187,22 +131,22 @@ export default function ContactSection() {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">{t("name")}</Label>
+                      <Label htmlFor="name">{t("name").toString()}</Label>
                       <Input id="name" required />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">{t("email")}</Label>
+                      <Label htmlFor="email">{t("email").toString()}</Label>
                       <Input id="email" type="email" required />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">{t("message")}</Label>
+                      <Label htmlFor="message">{t("message").toString()}</Label>
                       <Textarea id="message" rows={5} required />
                     </div>
 
                     <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                      {t("send")}
+                      {t("send").toString()}
                     </Button>
                   </form>
                 )}

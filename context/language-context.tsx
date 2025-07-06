@@ -95,7 +95,19 @@ const translations: Translations = {
   estimatedPrice: { es: "Precio Estimado", en: "Estimated Price" },
 
   // Contact
-  contactTitle: { es: "Contacto", en: "Contact" },
+  contactTitle: { 
+    es: "Hablemos sobre su proyecto", 
+    en: "Let's talk about your project"
+  },
+  contactDescription: { 
+    es: "Estamos aquí para ayudarle a dar vida a sus ideas. Contáctenos para discutir su proyecto y descubrir cómo podemos colaborar para crear espacios excepcionales.", 
+    en: "We are here to help you bring your ideas to life. Contact us to discuss your project and discover how we can collaborate to create exceptional spaces.",
+  },
+  contactFormTitle: { es: "Contacto", en: "Contact" },
+  contactFormSubTitle: { 
+    es: "Envíenos un mensaje y nos pondremos en contacto con usted lo antes posible.",
+    en: "Send us a message and we will get back to you as soon as possible.",
+  },
   name: { es: "Nombre", en: "Name" },
   email: { es: "Correo Electrónico", en: "Email" },
   message: { es: "Mensaje", en: "Message" },
@@ -118,6 +130,7 @@ const translations: Translations = {
   // Region specific
   officeLocation: { es: "Ubicación de la Oficina", en: "Office Location" },
   contactPhone: { es: "Teléfono de Contacto", en: "Contact Phone" },
+  emailAddress: { es: "Dirección de Correo", en: "Email Address" },
   localCurrency: { es: "Moneda Local", en: "Local Currency" },
 
   // Promo modal

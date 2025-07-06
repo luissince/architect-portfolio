@@ -12,6 +12,7 @@ type RegionData = {
   currencySymbol: string
   address: string
   phone: string
+  email: string
   timeZone: string
 }
 
@@ -28,8 +29,9 @@ export const regionSettings: Record<string, RegionData> = {
     lenguaje: "es",
     currency: "PEN",
     currencySymbol: "S/",
-    address: "Av. Javier Prado Este 2875, San Borja, Lima, Perú",
-    phone: "+51 1 234 5678",
+    address: "JR. FRANCIA N°130 – Lima, Perú",
+    phone: "+51 972 953 466",
+    email: "sheibrigitte@gmail.com",
     timeZone: "America/Lima",
   },
   // Países de habla inglesa
@@ -39,7 +41,8 @@ export const regionSettings: Record<string, RegionData> = {
     currency: "USD",
     currencySymbol: "$",
     address: "350 Fifth Avenue, New York, NY 10118, USA",
-    phone: "+1 212 123 4567",
+    phone: "+1 (305) 726-4577",
+    email: "sheibrigitte@gmail.com",
     timeZone: "America/New_York",
   },
 }
