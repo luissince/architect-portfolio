@@ -117,7 +117,7 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-semibold mb-6">
-              <span className="text-primary">{t("aboutFullName").toString()}</span> - <span className="text-accent font-bold">{t("aboutProfession").toString()}</span>
+              <span className="text-primary dark:text-accent">{t("aboutFullName").toString()}</span> - <span className="text-primary dark:text-accent">{t("aboutProfession").toString()}</span>
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">{t("aboutText").toString()}</p>
 
