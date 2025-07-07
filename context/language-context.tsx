@@ -72,6 +72,10 @@ const translations: Translations = {
   interiorDesign: { es: "Diseño de Interiores", en: "Interior Design" },
   architecturalPlans: { es: "Planos Arquitectónicos", en: "Architectural Plans" },
   consulting: { es: "Consultoría", en: "Consulting" },
+  buttonDetails: { es: "Ver más detalles", en: "View Details" },
+  professionalArchitecture: { es: "Servicio profesional de arquitectura", en: "Professional Architecture Service" },
+  benefits: { es: "Beneficios:", en: "Benefits:" },
+  buttonRequest: { es: "Solicitar este servicio", en: "Request this service" },
 
   // Portfolio
   portfolioTitle: { es: "Portafolio", en: "Portfolio" },

@@ -3,29 +3,30 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/context/language-context"
+import Image from "next/image"
 
 export default function WelcomeAnimation() {
   const [isVisible, setIsVisible] = useState(true)
   const { t } = useLanguage()
 
-  useEffect(() => {
-    // Comprobar si ya se mostró la animación en esta sesión
-    const hasSeenAnimation = sessionStorage.getItem("hasSeenWelcomeAnimation")
+  // useEffect(() => {
+  //   // Comprobar si ya se mostró la animación en esta sesión
+  //   const hasSeenAnimation = sessionStorage.getItem("hasSeenWelcomeAnimation")
 
-    if (hasSeenAnimation) {
-      setIsVisible(false)
-      return
-    }
+  //   if (hasSeenAnimation) {
+  //     setIsVisible(false)
+  //     return
+  //   }
 
-    // Ocultar la animación después de 5 segundos
-    const timer = setTimeout(() => {
-      setIsVisible(false)
-      // Guardar en sessionStorage para no mostrarla de nuevo en esta sesión
-      sessionStorage.setItem("hasSeenWelcomeAnimation", "true")
-    }, 5000)
+  //   // Ocultar la animación después de 5 segundos
+  //   const timer = setTimeout(() => {
+  //     setIsVisible(false)
+  //     // Guardar en sessionStorage para no mostrarla de nuevo en esta sesión
+  //     sessionStorage.setItem("hasSeenWelcomeAnimation", "true")
+  //   }, 5000)
 
-    return () => clearTimeout(timer)
-  }, [])
+  //   return () => clearTimeout(timer)
+  // }, [])
 
   // Si no es visible, no renderizar nada
   if (!isVisible) return null
@@ -102,8 +103,8 @@ export default function WelcomeAnimation() {
                 transition={{ duration: 0.8 }}
               >
                 {/* Logo o símbolo */}
-                <div className="relative w-32 h-32 mb-8">
-                  <motion.div
+                <div className="relative">
+                  {/* <motion.div
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}
                     transition={{ duration: 2, ease: "easeInOut" }}
@@ -116,7 +117,6 @@ export default function WelcomeAnimation() {
                       stroke="currentColor"
                       strokeWidth="1"
                     >
-                      {/* Dibujo arquitectónico elegante */}
                       <motion.path
                         d="M10,90 L10,30 L50,10 L90,30 L90,90 Z"
                         stroke="hsl(var(--accent))"
@@ -150,7 +150,6 @@ export default function WelcomeAnimation() {
                         transition={{ duration: 1, ease: "easeInOut", delay: 1.5 }}
                       />
 
-                      {/* Elementos decorativos adicionales */}
                       <motion.circle
                         cx="50"
                         cy="30"
@@ -161,20 +160,21 @@ export default function WelcomeAnimation() {
                         transition={{ duration: 0.5, delay: 2 }}
                       />
                     </svg>
-                  </motion.div>
+                  </motion.div> */}
+                   <Image src="/logo.png" alt="Logo" width={400} height={400} />
                 </div>
 
                 {/* Texto de bienvenida con animación de revelación */}
                 <div className="text-center overflow-hidden">
-                  <motion.h1
+                  {/* <motion.h1
                     className="text-4xl md:text-6xl font-playfair font-bold mb-4 relative"
                     initial={{ y: 100 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.8, delay: 1.2 }}
                   >
-                    <span className="text-primary">ESTUDIO</span>
+                    <span className="text-primary">DECORGANIKA</span>
                     <span className="text-accent">.</span>
-                  </motion.h1>
+                  </motion.h1> */}
 
                   <motion.div
                     className="overflow-hidden"
@@ -182,7 +182,7 @@ export default function WelcomeAnimation() {
                     animate={{ height: "auto" }}
                     transition={{ duration: 0.8, delay: 1.8 }}
                   >
-                    <p className="text-lg md:text-xl text-muted-foreground">{t("heroSubtitle")}</p>
+                    <p className="text-lg md:text-xl text-muted-foreground">{t("heroSubtitle").toString()}</p>
                   </motion.div>
                 </div>
               </motion.div>

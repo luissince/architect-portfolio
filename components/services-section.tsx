@@ -112,13 +112,13 @@ export default function ServicesSection() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-accent hover:text-accent-foreground hover:bg-accent"
+                      className="text-primary dark:text-accent hover:text-accent-foreground hover:bg-accent dark:hover:text-primary"
                       onClick={(e) => {
                         e.stopPropagation()
                         setSelectedService(service.id)
                       }}
                     >
-                      Ver más detalles
+                      {t("buttonDetails").toString()}
                     </Button>
                   </div>
                 </CardContent>
@@ -136,7 +136,7 @@ export default function ServicesSection() {
                   <DialogTitle className="text-2xl">
                     {services.find((s) => s.id === selectedService)?.title}
                   </DialogTitle>
-                  <DialogDescription className="text-accent">Servicio profesional de arquitectura</DialogDescription>
+                  <DialogDescription className="text-accent">{t("professionalArchitecture").toString()}</DialogDescription>
                 </DialogHeader>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
@@ -155,7 +155,7 @@ export default function ServicesSection() {
                     </p>
 
                     <div>
-                      <h4 className="font-semibold mb-2">Beneficios:</h4>
+                      <h4 className="font-semibold mb-2">{t("benefits").toString()}</h4>
                       <ul className="space-y-1">
                         {services
                           .find((s) => s.id === selectedService)
@@ -172,7 +172,7 @@ export default function ServicesSection() {
                       className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-4"
                       onClick={() => handleRequestService(selectedService)}
                     >
-                      Solicitar este servicio
+                      {t("buttonRequest").toString()}
                     </Button>
                   </div>
                 </div>
