@@ -55,15 +55,15 @@ const translations: Translations = {
     es: [
       "10+ años de experiencia",
       "50+ proyectos completados",
-      "Premios de diseño internacional",
+      "Certificación en Diseño Arquitectónico",
     ], en: [
       "10+ years of experience",
       "50+ completed projects",
-      "International design awards",
+      "Certification in Architecture Design",
     ]
   },
   aboutText: {
-    es: "Soy una arquitecta apasionada con más de 10 años de experiencia en el diseño de espacios únicos y funcionales. Mi filosofía se basa en la armonía entre estética, funcionalidad y sostenibilidad, creando proyectos que reflejan la personalidad y necesidades de cada cliente.",
+    es: "Soy arquitecta Apasionada con más de 7 años de experiencia en el diseño y desarrollo de espacios únicos, funcionales y sostenibles. Mi enfoque combina la estética con la funcionalidad, priorizando siempre las necesidades y estilo de vida de cada cliente. Creo firmemente en una arquitectura que inspire, respete el entorno y mejore la calidad de vida. Cada proyecto que desarrollo es el resultado de un proceso personalizado, donde escucho, analizo y transformo ideas en espacios que cuentan historias, transmiten identidad y generan bienestar.",
     en: "I am a passionate architect with over 10 years of experience designing unique and functional spaces. My philosophy is based on the harmony between aesthetics, functionality, and sustainability, creating projects that reflect each client's personality and needs.",
   },
 

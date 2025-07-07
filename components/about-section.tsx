@@ -122,7 +122,7 @@ export default function AboutSection() {
             <p className="text-muted-foreground mb-6 leading-relaxed">{t("aboutText").toString()}</p>
 
             <div className="grid grid-cols-2 gap-6 mt-8">
-              <div>
+              {/* <div>
                 <h4 className="font-semibold text-lg mb-2">{t("aboutEducation").toString()}</h4>
                 <ul className="space-y-2 text-sm">
                   {
@@ -131,7 +131,7 @@ export default function AboutSection() {
                     ))
                   }
                 </ul>
-              </div>
+              </div> */}
               <div>
                 <h4 className="font-semibold text-lg mb-2">{t("aboutExperience").toString()}</h4>
                 <ul className="space-y-2 text-sm">
