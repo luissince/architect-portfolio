@@ -9,24 +9,24 @@ export default function WelcomeAnimation() {
   const [isVisible, setIsVisible] = useState(true)
   const { t } = useLanguage()
 
-  // useEffect(() => {
-  //   // Comprobar si ya se mostró la animación en esta sesión
-  //   const hasSeenAnimation = sessionStorage.getItem("hasSeenWelcomeAnimation")
+  useEffect(() => {
+    // Comprobar si ya se mostró la animación en esta sesión
+    const hasSeenAnimation = sessionStorage.getItem("hasSeenWelcomeAnimation")
 
-  //   if (hasSeenAnimation) {
-  //     setIsVisible(false)
-  //     return
-  //   }
+    if (hasSeenAnimation) {
+      setIsVisible(false)
+      return
+    }
 
-  //   // Ocultar la animación después de 5 segundos
-  //   const timer = setTimeout(() => {
-  //     setIsVisible(false)
-  //     // Guardar en sessionStorage para no mostrarla de nuevo en esta sesión
-  //     sessionStorage.setItem("hasSeenWelcomeAnimation", "true")
-  //   }, 5000)
+    // Ocultar la animación después de 5 segundos
+    const timer = setTimeout(() => {
+      setIsVisible(false)
+      // Guardar en sessionStorage para no mostrarla de nuevo en esta sesión
+      sessionStorage.setItem("hasSeenWelcomeAnimation", "true")
+    }, 5000)
 
-  //   return () => clearTimeout(timer)
-  // }, [])
+    return () => clearTimeout(timer)
+  }, [])
 
   // Si no es visible, no renderizar nada
   if (!isVisible) return null
