@@ -7,6 +7,7 @@ import Image from "next/image"
 
 export default function WelcomeAnimation() {
   const [isVisible, setIsVisible] = useState(true)
+  const [showLightLogo, setShowLightLogo] = useState(false)
   const { t } = useLanguage()
 
   useEffect(() => {
@@ -18,14 +19,22 @@ export default function WelcomeAnimation() {
       return
     }
 
+    // Cambiar al logo claro cuando las cortinas empiecen a abrirse
+    const logoTimer = setTimeout(() => {
+      setShowLightLogo(true)
+    }, 2800) // Un poco antes de que las cortinas se abran
+
     // Ocultar la animación después de 5 segundos
-    const timer = setTimeout(() => {
+    const hideTimer = setTimeout(() => {
       setIsVisible(false)
       // Guardar en sessionStorage para no mostrarla de nuevo en esta sesión
       sessionStorage.setItem("hasSeenWelcomeAnimation", "true")
     }, 5000)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(logoTimer)
+      clearTimeout(hideTimer)
+    }
   }, [])
 
   // Si no es visible, no renderizar nada
@@ -102,80 +111,35 @@ export default function WelcomeAnimation() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                {/* Logo o símbolo */}
+                {/* Logo con transición entre oscuro y claro */}
                 <div className="relative">
-                  {/* <motion.div
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 2, ease: "easeInOut" }}
-                    className="w-full h-full"
-                  >
-                    <svg
-                      viewBox="0 0 100 100"
-                      className="w-full h-full"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                    >
-                      <motion.path
-                        d="M10,90 L10,30 L50,10 L90,30 L90,90 Z"
-                        stroke="hsl(var(--accent))"
-                        strokeWidth="2"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                      />
-                      <motion.path
-                        d="M10,30 L50,50 L90,30"
-                        stroke="hsl(var(--accent))"
-                        strokeWidth="2"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                      />
-                      <motion.path
-                        d="M50,50 L50,90"
-                        stroke="hsl(var(--accent))"
-                        strokeWidth="2"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
-                      />
-                      <motion.path
-                        d="M30,70 L70,70"
-                        stroke="hsl(var(--accent))"
-                        strokeWidth="2"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1, ease: "easeInOut", delay: 1.5 }}
-                      />
-
-                      <motion.circle
-                        cx="50"
-                        cy="30"
-                        r="3"
-                        fill="hsl(var(--accent))"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 2 }}
-                      />
-                    </svg>
-                  </motion.div> */}
-                   <Image src="/logo.png" alt="Logo" width={400} height={400} />
+                  <AnimatePresence mode="wait">
+                    {!showLightLogo ? (
+                      <motion.div
+                        key="dark-logo"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Image src="/logo-dark.png" alt="Logo Dark" width={400} height={400} />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="light-logo"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Image src="/logo.png" alt="Logo Light" width={400} height={400} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Texto de bienvenida con animación de revelación */}
                 <div className="text-center overflow-hidden">
-                  {/* <motion.h1
-                    className="text-4xl md:text-6xl font-playfair font-bold mb-4 relative"
-                    initial={{ y: 100 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                  >
-                    <span className="text-primary">DECORGANIKA</span>
-                    <span className="text-accent">.</span>
-                  </motion.h1> */}
-
                   <motion.div
                     className="overflow-hidden"
                     initial={{ height: 0 }}

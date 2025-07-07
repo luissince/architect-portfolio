@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 import { motion } from "framer-motion"
@@ -8,20 +8,27 @@ import { Menu, X, Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import ThemeSwitcher from "@/components/theme-switcher"
-import CartButton from "@/components/cart-button"
 import { SearchModal } from "@/components/search-modal"
 import { useLanguage } from "@/context/language-context"
 import { regionSettings, useRegion } from "@/context/region-context"
-import { UserNav } from "@/components/user-nav"
 import Image from "next/image"
+import { useTheme } from "next-themes"
 
 export default function Navbar() {
+  const [mounted, setMounted] = useState(false)
   const { language, setLanguage, t } = useLanguage()
   const { regionData, setRegionData } = useRegion()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
+  const { theme } = useTheme();
+
+  // Evitar problemas de hidratación
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,6 +78,10 @@ export default function Navbar() {
     { href: "contact", label: t("contact") as string },
   ]
 
+  if (!mounted) {
+    return null
+  }
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-background/90 backdrop-blur-md shadow-md`}
@@ -81,9 +92,11 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-playfair font-bold">
-          <Image src="/logo.png" alt="Logo" width={100} height={100} />
-          {/* <span className="text-primary">ESTUDIO</span>
-          <span className="text-accent">.</span> */}
+          {theme === "dark" ? (
+            <Image src="/logo-dark.png" alt="Logo" width={100} height={100} />
+          ) : (
+            <Image src="/logo.png" alt="Logo" width={100} height={100} />
+          )}
         </Link>
 
         {/* Desktop Navigation - Centrado */}
