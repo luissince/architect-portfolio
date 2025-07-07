@@ -36,7 +36,7 @@ const translations: Translations = {
 
   // About
   aboutTitle: { es: "Sobre Mí", en: "About Me" },
-  aboutFullName: { es: "Ana Martínez", en: "Ana Martínez" },
+  aboutFullName: { es: "Sheila Ramos Díaz", en: "Sheila Ramos Díaz" },
   aboutProfession: { es: "Arquitecta", en: "Architect" },
   aboutEducation: { es: "Educación", en: "Education" },
   aboutEducationList: {
