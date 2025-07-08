@@ -31,7 +31,7 @@ export const regionSettings: Record<string, RegionData> = {
     currencySymbol: "S/",
     address: "JR. FRANCIA N°130 – Lima, Perú",
     phone: "+51 972 953 466",
-    email: "sheibrigitte@gmail.com",
+    email: "decorganika@gmail.com",
     timeZone: "America/Lima",
   },
   // Países de habla inglesa
@@ -42,7 +42,7 @@ export const regionSettings: Record<string, RegionData> = {
     currencySymbol: "$",
     address: "350 Fifth Avenue, New York, NY 10118, USA",
     phone: "+1 (305) 726-4577",
-    email: "sheibrigitte@gmail.com",
+    email: "decorganika@gmail.com",
     timeZone: "America/New_York",
   },
 }

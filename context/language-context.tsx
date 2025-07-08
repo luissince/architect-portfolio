@@ -64,14 +64,19 @@ const translations: Translations = {
   },
   aboutText: {
     es: "Soy arquitecta Apasionada con más de 7 años de experiencia en el diseño y desarrollo de espacios únicos, funcionales y sostenibles. Mi enfoque combina la estética con la funcionalidad, priorizando siempre las necesidades y estilo de vida de cada cliente. Creo firmemente en una arquitectura que inspire, respete el entorno y mejore la calidad de vida. Cada proyecto que desarrollo es el resultado de un proceso personalizado, donde escucho, analizo y transformo ideas en espacios que cuentan historias, transmiten identidad y generan bienestar.",
-    en: "I am a passionate architect with over 10 years of experience designing unique and functional spaces. My philosophy is based on the harmony between aesthetics, functionality, and sustainability, creating projects that reflect each client's personality and needs.",
+    en: "I am a passionate architect with over 7 years of experience in designing and developing unique, functional, and sustainable spaces. My approach combines aesthetics with functionality, always prioritizing the needs and lifestyle of each client. I firmly believe in architecture that inspires, respects the environment, and enhances quality of life. Every project I develop is the result of a personalized process, where I listen, analyze, and transform ideas into spaces that tell stories, convey identity, and promote well-being."
   },
 
   // Services
   servicesTitle: { es: "Servicios", en: "Services" },
-  interiorDesign: { es: "Diseño de Interiores", en: "Interior Design" },
+  interiorDesign: { 
+    es: "Diseño y Remodelación de Interiores", 
+    en: "Interior Design and Remodeling"
+  },
   architecturalPlans: { es: "Planos Arquitectónicos", en: "Architectural Plans" },
   consulting: { es: "Consultoría", en: "Consulting" },
+  furnitureDesign: { es: "Diseño de Mobiliario", en: "Furniture Design" },
+  artForYourHome: { es: "Arte para tu hogar", en: "Art for your home" },
   buttonDetails: { es: "Ver más detalles", en: "View Details" },
   professionalArchitecture: { es: "Servicio profesional de arquitectura", en: "Professional Architecture Service" },
   benefits: { es: "Beneficios:", en: "Benefits:" },

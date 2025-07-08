@@ -11,6 +11,8 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FadeInAnimation } from "./animation-wrapper"
+import { MdChair } from "react-icons/md"
+import { GiFamilyHouse } from "react-icons/gi"
 
 export default function ServicesSection() {
   const { t } = useLanguage()
@@ -35,7 +37,7 @@ export default function ServicesSection() {
         "Asesoramiento en iluminación y paletas de colores",
         "Supervisión de la implementación del diseño",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/services1.jpeg?height=600&width=800",
     },
     {
       id: 2,
@@ -52,7 +54,7 @@ export default function ServicesSection() {
         "Documentación completa para permisos de construcción",
         "Asesoramiento durante el proceso de construcción",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/services2.jpeg?height=600&width=800",
     },
     {
       id: 3,
@@ -69,7 +71,44 @@ export default function ServicesSection() {
         "Soluciones para eficiencia energética y sostenibilidad",
         "Gestión de proyectos y coordinación con contratistas",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/services3.jpeg?height=600&width=800",
+    },
+    {
+      id: 4,
+      icon: <GiFamilyHouse className="h-10 w-10 text-accent" />,
+      title: t("furnitureDesign").toString(),
+      description:
+        "El diseño de mobiliario, tanto para interiores como para exteriores, es un arte que combina funcionalidad y estética, transformando espacios en verdaderos hogares.",
+      fullDescription:
+        "El diseño de mobiliario, tanto para interiores como para exteriores, es un arte que combina funcionalidad y estética, transformando espacios en verdaderos hogares. En el interior, cada pieza de mobiliario se elige cuidadosamente para complementar el estilo de vida de los habitantes, desde sofás confortables que invitan a la relajación, hasta mesas de comedor que fomentan la convivencia familiar. Los materiales utilizados, como la madera natural, el metal y los textiles, no solo aportan belleza, sino también durabilidad y calidez al ambiente. Por otro lado, el diseño de mobiliario exterior busca crear un refugio en la naturaleza, donde los muebles resisten las inclemencias del tiempo sin perder su atractivo. Sillas, mesas y tumbonas están pensadas para disfrutar del aire libre, ofreciendo comodidad y estilo a jardines, terrazas y patios. En cada proyecto, la creatividad se fusiona con la ergonomía, garantizando que cada pieza no solo sea visualmente atractiva, sino que también mejore la calidad de vida de quienes la utilizan. Este enfoque holístico en el diseño de mobiliario busca crear espacios armónicos que reflejen la personalidad de sus dueños y se adapten a sus necesidades cotidianas.",
+      benefits: [
+        "Evaluación de viabilidad y análisis de sitio",
+        "Asesoramiento en selección de materiales y tecnologías",
+        "Optimización de presupuesto y recursos",
+        "Soluciones para eficiencia energética y sostenibilidad",
+        "Gestión de proyectos y coordinación con contratistas",
+      ],
+      image: "/services4.jpeg?height=600&width=800",
+    },
+    {
+      id: 5,
+      icon: <MdChair className="h-10 w-10 text-accent" />,
+      title: t("artForYourHome").toString(),
+      description:
+        "En el mundo del arte, ofrecemos una amplia gama de opciones para transformar y embellecer tu vivienda.",
+      fullDescription:
+        `En el mundo del arte, ofrecemos una amplia gama de opciones para transformar y embellecer tu vivienda. Nuestra colección incluye esculturas únicas, que añaden un toque de elegancia y carácter a cualquier espacio. Cada pieza es cuidadosamente elaborada, reflejando la creatividad y el talento de los artistas, lo que permite que cada rincón de tu hogar cuente una historia a través del arte tridimensional. 
+        Además, contamos con una selección de cuadros que abarcan diversos estilos, desde obras contemporáneas hasta clásicos atemporales. Estos cuadros no solo adornan las paredes, sino que también crean un ambiente acogedor y atractivo, invitando a la contemplación y al diálogo. Cada obra está diseñada para complementar la decoración de tu hogar, proporcionando un punto focal que captura la atención de tus visitantes.
+        Por si fuera poco, también ofrecemos una variedad de suministros creativos para aquellos que desean explorar su propia creatividad. Desde lienzos de diferentes tamaños hasta pinturas, pinceles y herramientas especializadas, tenemos todo lo necesario para que puedas dar rienda suelta a tu talento artístico. Ya seas un artista experimentado o un principiante entusiasta, nuestros materiales de alta calidad te inspirarán a crear obras maestras en la comodidad de tu hogar.
+        En resumen, nuestra oferta abarca desde esculturas y cuadros que realzan la estética de tu vivienda, hasta suministros artísticos que fomentan la creatividad. Invita el arte a tu vida y transforma tu hogar en un espacio lleno de inspiración y belleza.`,
+      benefits: [
+        "Evaluación de viabilidad y análisis de sitio",
+        "Asesoramiento en selección de materiales y tecnologías",
+        "Optimización de presupuesto y recursos",
+        "Soluciones para eficiencia energética y sostenibilidad",
+        "Gestión de proyectos y coordinación con contratistas",
+      ],
+      image: "/services5.jpeg?height=600&width=800",
     },
   ]
 
@@ -112,7 +151,7 @@ export default function ServicesSection() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-primary dark:text-accent hover:text-accent-foreground hover:bg-accent dark:hover:text-primary"
+                      className="text-primary hover:text-accent-foreground hover:bg-accent bg-transparent"
                       onClick={(e) => {
                         e.stopPropagation()
                         setSelectedService(service.id)
@@ -129,18 +168,18 @@ export default function ServicesSection() {
 
         {/* Service Detail Dialog */}
         <Dialog open={selectedService !== null} onOpenChange={(open) => !open && setSelectedService(null)}>
-          <DialogContent className="max-w-4xl">
+          <DialogContent className="max-w-[95vw] md:max-w-4xl max-h-[90vh] overflow-y-auto">
             {selectedService && (
               <>
                 <DialogHeader>
-                  <DialogTitle className="text-2xl">
+                  <DialogTitle className="text-xl md:text-2xl">
                     {services.find((s) => s.id === selectedService)?.title}
                   </DialogTitle>
                   <DialogDescription className="text-accent">{t("professionalArchitecture").toString()}</DialogDescription>
                 </DialogHeader>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                  <div className="relative h-64 w-full rounded-lg overflow-hidden">
+                <div className="grid grid-cols-1 gap-6 mt-4">
+                  <div className="relative h-48 md:h-64 w-full rounded-lg overflow-hidden">
                     <Image
                       src={services.find((s) => s.id === selectedService)?.image || "/placeholder.svg"}
                       alt={services.find((s) => s.id === selectedService)?.title || "Service"}
@@ -150,18 +189,18 @@ export default function ServicesSection() {
                   </div>
 
                   <div className="space-y-4">
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm md:text-base">
                       {services.find((s) => s.id === selectedService)?.fullDescription}
                     </p>
 
                     <div>
                       <h4 className="font-semibold mb-2">{t("benefits").toString()}</h4>
-                      <ul className="space-y-1">
+                      <ul className="space-y-2">
                         {services
                           .find((s) => s.id === selectedService)
                           ?.benefits.map((benefit, index) => (
                             <li key={index} className="flex items-start">
-                              <span className="text-accent mr-2">•</span>
+                              <span className="text-accent mr-2 mt-1 flex-shrink-0">•</span>
                               <span className="text-sm text-muted-foreground">{benefit}</span>
                             </li>
                           ))}
@@ -169,7 +208,7 @@ export default function ServicesSection() {
                     </div>
 
                     <Button
-                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-4"
+                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-6"
                       onClick={() => handleRequestService(selectedService)}
                     >
                       {t("buttonRequest").toString()}
