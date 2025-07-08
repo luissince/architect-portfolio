@@ -53,11 +53,11 @@ const translations: Translations = {
   aboutExperience: { es: "Experiencia", en: "Experience" },
   aboutExperienceList: {
     es: [
-      "10+ años de experiencia",
+      "7+ años de experiencia",
       "50+ proyectos completados",
       "Certificación en Diseño Arquitectónico",
     ], en: [
-      "10+ years of experience",
+      "7+ years of experience",
       "50+ completed projects",
       "Certification in Architecture Design",
     ]
