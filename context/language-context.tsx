@@ -2,8 +2,18 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { getCookie } from "cookies-next"
+import { es } from "date-fns/locale"
 
 type Language = "es" | "en"
+
+export type AboutPersonal = {
+  period?: string
+  year?: string
+  title?: string
+  company?: string
+  description?: string
+  institution?: string
+}
 
 export type PromoModalContent = {
   title: string
@@ -14,8 +24,8 @@ export type PromoModalContent = {
 
 type Translations = {
   [key: string]: {
-    es: string | string[] | PromoModalContent
-    en: string | string[] | PromoModalContent
+    es: string | string[] | PromoModalContent | AboutPersonal[]
+    en: string | string[] | PromoModalContent | AboutPersonal[]
   }
 }
 
@@ -66,11 +76,216 @@ const translations: Translations = {
     es: "Soy arquitecta Apasionada con más de 7 años de experiencia en el diseño y desarrollo de espacios únicos, funcionales y sostenibles. Mi enfoque combina la estética con la funcionalidad, priorizando siempre las necesidades y estilo de vida de cada cliente. Creo firmemente en una arquitectura que inspire, respete el entorno y mejore la calidad de vida. Cada proyecto que desarrollo es el resultado de un proceso personalizado, donde escucho, analizo y transformo ideas en espacios que cuentan historias, transmiten identidad y generan bienestar.",
     en: "I am a passionate architect with over 7 years of experience in designing and developing unique, functional, and sustainable spaces. My approach combines aesthetics with functionality, always prioritizing the needs and lifestyle of each client. I firmly believe in architecture that inspires, respects the environment, and enhances quality of life. Every project I develop is the result of a personalized process, where I listen, analyze, and transform ideas into spaces that tell stories, convey identity, and promote well-being."
   },
+  aboutPersonalTabOne: {
+    es: "Mi historia",
+    en: "My Story"
+  },
+  aboutPersonalTabTwo: {
+    es: "Logros",
+    en: "Achievements"
+  },
+  aboutPersonalTabThree: {
+    es: "Formación",
+    en: "Background"
+  },
+  aboutPersonalTitle: {
+    es: "Mi camino en la arquitectura",
+    en: "My journey in architecture"
+  },
+  aboutPersonalStory: {
+    es: [
+      `Desde niña me fascinaban los espacios: cómo una habitación podía hacerte sentir
+      cómodo, inspirado o en casa. Esa curiosidad fue creciendo hasta convertirse en
+      vocación. En 2018 me gradué como arquitecta en la Universidad César Vallejo, con una
+      tesis enfocada en cómo el diseño puede mejorar la enseñanza y el aprendizaje en
+      entornos educativos.`,
+
+      `Mi carrera inició con fuerza: en los primeros años trabajé en MC Architects, donde tuve
+      la oportunidad de participar en proyectos de vivienda y comercio en distritos clave de
+      Lima como San Isidro y Miraflores. Fue ahí donde descubrí mi pasión por remodelar
+      espacios comerciales y ver cómo una idea bien ejecutada podía transformar por
+      completo la experiencia de los usuarios y clientes. `,
+
+      `Luego, mi trabajo me llevó al sector salud. En Inversiones Megavisión, lideré el diseño
+      de centros médicos, policlínicos y salas de tomografía, enfrentándome al reto de
+      combinar funcionalidad, normativa técnica y sensibilidad humana. Fue una etapa
+      intensa que fortaleció mi disciplina y compromiso con la excelencia técnica.`,
+
+      `En los últimos años, como arquitecta independiente en DECORGANIKA.SKS, consolidé
+      mi experiencia: más de 50 proyectos desarrollados en Cajamarca y Lima, desde
+      viviendas familiares hasta restobares, hoteles, spas, clínicas y departamentos Airbnb.
+      Cada proyecto fue una nueva historia, una nueva oportunidad de interpretar lo que mis
+      clientes soñaban y convertirlo en un espacio funcional, estético y con identidad.`
+    ],
+    en: [
+      `Since I was a child, I was fascinated by spaces—how a room could make you feel comfortable, inspired, or at home. 
+      That curiosity grew into a calling. In 2018, I graduated as an architect from César Vallejo University, 
+      with a thesis focused on how design can enhance teaching and learning in educational environments.`,
+
+      `My career started off strong: in the first few years, I worked at MC Architects, 
+      where I had the opportunity to participate in residential and commercial projects in key districts 
+      of Lima such as San Isidro and Miraflores. 
+      It was there that I discovered my passion for remodeling commercial spaces and saw how a well-executed 
+      idea could completely transform the experience of users and customers.`,
+
+      `Later, my work led me to the healthcare sector. At Inversiones Megavisión, 
+      I led the design of medical centers, polyclinics, and tomography rooms, facing the challenge of combining functionality, 
+      technical regulations, and human sensitivity. It was an intense stage that 
+      strengthened my discipline and commitment to technical excellence.`,
+
+      `In recent years, as an independent architect at DECORGANIKA.SKS, I have consolidated my experience: over 50 projects 
+      developed in Cajamarca and Lima, ranging from family homes to restobars, hotels, spas, clinics, and Airbnb apartments. 
+      Each project was a new story, a new opportunity to interpret what my clients dreamed of and turn it into a functional, 
+      aesthetic space with identity.`
+    ]
+  },
+  aboutAchievementsTitle: {
+    es: "Reconocimientos y premios",
+    en: "Achievements and Awards"
+  },
+  aboutAchievements: {
+    es: [
+      {
+        year: "2023",
+        title: "Premio Nacional de Arquitectura Sostenible",
+        description: `Más de 50 proyectos arquitectónicos liderados en Lima y Cajamarca, incluyendo viviendas, espacios comerciales, restaurantes, hoteles, spas, clínicas y centros dentales.`,
+      },
+      {
+        year: "2021",
+        title: "Finalista en los World Architecture Awards",
+        description: `Participación en el diseño, ejecución y supervisión de remodelaciones comerciales como:
+        Restobar “Wing Star Sport Bar” (Miraflores)
+        Hotel y Restobar “Huerta de Hierro” (Miraflores)
+        Frito Restobar y Dojo Restobar (Cajamarca y Lima)`,
+      },
+      {
+        year: "2019",
+        title: "Premio a la Innovación en Diseño Interior",
+        description: `Trabajo con normativas técnicas especializadas, como la Norma Técnica de Salud del MINSA, en proyectos hospitalarios.`,
+      },
+      {
+        year: "2017",
+        title: "Reconocimiento por Arquitectura Bioclimática",
+        description: `Capacidad demostrada en todas las etapas del diseño: desde el asesoramiento conceptual hasta la entrega final.`
+      },
+    ],
+    en: [
+      {
+        year: "2023",
+        title: "National Sustainable Architecture Award",
+        description: `Led over 50 architectural projects in Lima and Cajamarca, including homes, commercial spaces, restaurants, hotels, spas, clinics, and dental centers.`,
+      },
+      {
+        year: "2021",
+        title: "Finalist at the World Architecture Awards",
+        description: `Participated in the design, execution, and supervision of commercial renovations such as:
+        Wing Star Sport Bar (Miraflores)
+        Huerta de Hierro Hotel & Restobar (Miraflores)
+        Frito Restobar and Dojo Restobar (Cajamarca and Lima)`,
+      },
+      {
+        year: "2019",
+        title: "Interior Design Innovation Award",
+        description: `Worked with specialized technical regulations, such as the MINSA Health Technical Standard, in healthcare facility projects.`,
+      },
+      {
+        year: "2017",
+        title: "Recognition for Bioclimatic Architecture",
+        description: `Demonstrated ability across all design stages, from conceptual advising to final project delivery.`
+      },
+    ]
+  },
+
+  aboutEducationsTitle: {
+    es: "Educación",
+    en: "Education"
+  },
+  aboutEducations: {
+    es: [
+      {
+        year: "2018",
+        title: "Arquitecta Colegiada",
+        institution: "Universidad César Vallejo – Facultad de Arquitectura",
+      },
+      {
+        year: "2023",
+        title: "Certificación Modulo I “Saneamiento Físico Legal de Predios Urbanos”",
+        institution: "Colegio de Arquitectos del Perú",
+      },
+      {
+        year: "2023",
+        title: "Certificación Modulo I “Diseño y construcción en edificaciones -BIM”",
+        institution: "Colegio de Arquitectos del Perú",
+      },
+      {
+        year: "2023",
+        title: "Certificación Modulo II “Diseño y construcción en edificaciones -BIM”",
+        institution: "Colegio de Arquitectos del Perú",
+      },
+    ],
+    en: [
+      {
+        year: "2018",
+        title: "Licensed Architect",
+        institution: "César Vallejo University – Faculty of Architecture",
+      },
+      {
+        year: "2023",
+        title: "Certification Module I: Legal Physical Sanitation of Urban Properties",
+        institution: "College of Architects of Peru",
+      },
+      {
+        year: "2023",
+        title: "Certification Module I: Design and Construction in Buildings – BIM",
+        institution: "College of Architects of Peru",
+      },
+      {
+        year: "2023",
+        title: "Certification Module II: Design and Construction in Buildings – BIM",
+        institution: "College of Architects of Peru",
+      },
+    ]
+  },
+
+  aboutExperiencesTitle: {
+    es: "Experiencia Profesional",
+    en: "Professional Experience"
+  },
+  aboutExperiences: {
+    es: [
+      {
+        period: "2019-2020",
+        title: "Arquitecta Consultora y Supervisora Técnica",
+        company: "INVERSIONES MEGAVISIÓN S.A.C",
+        description: "Diseño de centros médicos y áreas especializadas",
+      },
+      {
+        period: "2018-2019",
+        title: "Arquitecta Consultora y Supervisora de Proyecto",
+        company: "MC ARCHITECTS",
+        description: "Diseño arquitectónico, regularización de planos y documentación normativa",
+      },
+    ],
+    en: [
+      {
+        period: "2019–2020",
+        title: "Architect Consultant and Technical Supervisor",
+        company: "INVERSIONES MEGAVISIÓN S.A.C",
+        description: "Design of medical centers and specialized areas",
+      },
+      {
+        period: "2018–2019",
+        title: "Architect Consultant and Project Supervisor",
+        company: "MC ARCHITECTS",
+        description: "Architectural design, plan regularization, and regulatory documentation",
+      },
+    ]
+  },
 
   // Services
   servicesTitle: { es: "Servicios", en: "Services" },
-  interiorDesign: { 
-    es: "Diseño y Remodelación de Interiores", 
+  interiorDesign: {
+    es: "Diseño y Remodelación de Interiores",
     en: "Interior Design and Remodeling"
   },
   architecturalPlans: { es: "Planos Arquitectónicos", en: "Architectural Plans" },
@@ -104,16 +319,16 @@ const translations: Translations = {
   estimatedPrice: { es: "Precio Estimado", en: "Estimated Price" },
 
   // Contact
-  contactTitle: { 
-    es: "Hablemos sobre su proyecto", 
+  contactTitle: {
+    es: "Hablemos sobre su proyecto",
     en: "Let's talk about your project"
   },
-  contactDescription: { 
-    es: "Estamos aquí para ayudarle a dar vida a sus ideas. Contáctenos para discutir su proyecto y descubrir cómo podemos colaborar para crear espacios excepcionales.", 
+  contactDescription: {
+    es: "Estamos aquí para ayudarle a dar vida a sus ideas. Contáctenos para discutir su proyecto y descubrir cómo podemos colaborar para crear espacios excepcionales.",
     en: "We are here to help you bring your ideas to life. Contact us to discuss your project and discover how we can collaborate to create exceptional spaces.",
   },
   contactFormTitle: { es: "Contacto", en: "Contact" },
-  contactFormSubTitle: { 
+  contactFormSubTitle: {
     es: "Envíenos un mensaje y nos pondremos en contacto con usted lo antes posible.",
     en: "Send us a message and we will get back to you as soon as possible.",
   },
@@ -144,21 +359,21 @@ const translations: Translations = {
 
   // Promo modal
   promoModal: {
-    es: 
-      {
-        title: "Oferta Especial para Perú",
-        description: "Obtén un 20% de descuento en tu primera consulta arquitectónica. Válido hasta fin de mes.",
-        image: "/placeholder.svg?height=300&width=500",
-        cta: "Aprovechar oferta",
-      }
+    es:
+    {
+      title: "Oferta Especial para Perú",
+      description: "Obtén un 20% de descuento en tu primera consulta arquitectónica. Válido hasta fin de mes.",
+      image: "/placeholder.svg?height=300&width=500",
+      cta: "Aprovechar oferta",
+    }
     ,
-    en: 
-      {
-        title: "Promoción Exclusiva para México",
-        description: "Diseño de interiores con 15% de descuento para proyectos residenciales.",
-        image: "/placeholder.svg?height=300&width=500",
-        cta: "Ver detalles",
-      }
+    en:
+    {
+      title: "Promoción Exclusiva para México",
+      description: "Diseño de interiores con 15% de descuento para proyectos residenciales.",
+      image: "/placeholder.svg?height=300&width=500",
+      cta: "Ver detalles",
+    }
     ,
   }
 }
@@ -166,7 +381,7 @@ const translations: Translations = {
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string | string[] | PromoModalContent
+  t: (key: string) => string | string[] | PromoModalContent | AboutPersonal[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -182,7 +397,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const t = (key: string): string | string[] | PromoModalContent => {
+  const t = (key: string): string | string[] | PromoModalContent | AboutPersonal[] => {
     if (!translations[key]) {
       console.warn(`Translation key "${key}" not found.`)
       return key
