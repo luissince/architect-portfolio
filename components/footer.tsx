@@ -83,9 +83,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-primary-foreground/60">
-          <p>
-            © {currentYear} DECORGANIKA. {t("allRightsReserved").toString()}.
-          </p>
+          <a href="https://www.syssoftintegra.com/">
+            © {currentYear} SysSoftIntegra. {t("allRightsReserved").toString()}.
+          </a>
         </div>
       </div>
     </footer>
