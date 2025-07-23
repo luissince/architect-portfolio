@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Montserrat } from "next/font/google"
 import "./globals.css"
 import { LanguageProvider } from "@/context/language-context"
@@ -26,6 +26,12 @@ export const metadata: Metadata = {
     icon: "logo.png",
     apple: "logo.png",
   }
+}
+
+export const viewport: Viewport = {
+  initialScale: 1.0,
+  width: 'device-width',
+  userScalable: false,
 }
 
 export default function RootLayout({
