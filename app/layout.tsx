@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   title: "Estudio de Arquitectura | Decorganika",
   description: "Portfolio profesional de arquitectura con proyectos, servicios y productos",
   generator: "SysSoft Integra",
+  icons: {
+    icon: "logo.png",
+    apple: "logo.png",
+  }
 }
 
 export default function RootLayout({
