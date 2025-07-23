@@ -1,4 +1,5 @@
+import { ProfileSkeleton } from "@/components/profile-skeleton"
+
 export default function Loading() {
-    return null
-  }
-  
+  return <ProfileSkeleton />
+}
