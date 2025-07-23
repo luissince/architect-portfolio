@@ -2,9 +2,21 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { getCookie } from "cookies-next"
-import { es } from "date-fns/locale"
+import { Compass, Home, Lightbulb } from "lucide-react"
+import { GiFamilyHouse } from "react-icons/gi"
+import { MdChair } from "react-icons/md"
 
-type Language = "es" | "en"
+export type Language = "es" | "en"
+
+export type Service = {
+  id: number
+  icon: ReactNode
+  title: string
+  description: string
+  fullDescription: string
+  benefits: string[]
+  image: string
+}
 
 export type AboutPersonal = {
   period?: string
@@ -24,8 +36,8 @@ export type PromoModalContent = {
 
 type Translations = {
   [key: string]: {
-    es: string | string[] | PromoModalContent | AboutPersonal[]
-    en: string | string[] | PromoModalContent | AboutPersonal[]
+    es: string | string[] | PromoModalContent | AboutPersonal[] | Service[]
+    en: string | string[] | PromoModalContent | AboutPersonal[] | Service[]
   }
 }
 
@@ -284,18 +296,192 @@ const translations: Translations = {
 
   // Services
   servicesTitle: { es: "Servicios", en: "Services" },
-  interiorDesign: {
-    es: "Diseño y Remodelación de Interiores",
-    en: "Interior Design and Remodeling"
-  },
-  architecturalPlans: { es: "Planos Arquitectónicos", en: "Architectural Plans" },
-  consulting: { es: "Consultoría", en: "Consulting" },
-  furnitureDesign: { es: "Diseño de Mobiliario", en: "Furniture Design" },
-  artForYourHome: { es: "Arte para tu hogar", en: "Art for your home" },
   buttonDetails: { es: "Ver más detalles", en: "View Details" },
   professionalArchitecture: { es: "Servicio profesional de arquitectura", en: "Professional Architecture Service" },
   benefits: { es: "Beneficios:", en: "Benefits:" },
   buttonRequest: { es: "Solicitar este servicio", en: "Request this service" },
+  servicesList: {
+    es: [
+      {
+        id: 1,
+        icon: <Home className="h-10 w-10 text-accent" />,
+        title: "Diseño y Remodelación de Interiores",
+        description:
+          "Transformamos espacios interiores para crear ambientes funcionales y estéticamente atractivos que reflejen su personalidad y estilo de vida.",
+        fullDescription:
+          "Nuestro servicio de diseño de interiores abarca desde la conceptualización inicial hasta la implementación final. Trabajamos estrechamente con cada cliente para entender sus necesidades, preferencias y estilo de vida, creando espacios que no solo son hermosos sino también funcionales y personalizados. Utilizamos las últimas tendencias en diseño, materiales sostenibles y soluciones innovadoras para transformar cualquier espacio en un ambiente que inspire y mejore la calidad de vida.",
+        benefits: [
+          "Diseño personalizado adaptado a sus necesidades y estilo",
+          "Selección de materiales, mobiliario y accesorios",
+          "Optimización del espacio y la funcionalidad",
+          "Asesoramiento en iluminación y paletas de colores",
+          "Supervisión de la implementación del diseño",
+        ],
+        image: "/services1.jpeg?height=600&width=800",
+      },
+      {
+        id: 2,
+        icon: <Compass className="h-10 w-10 text-accent" />,
+        title: "Planos Arquitectónicos",
+        description:
+          "Desarrollamos planos arquitectónicos detallados y precisos para proyectos residenciales, comerciales e institucionales.",
+        fullDescription:
+          "Nuestros planos arquitectónicos son el resultado de un proceso meticuloso que combina creatividad, precisión técnica y cumplimiento normativo. Utilizamos software de diseño avanzado para crear representaciones detalladas que sirven como guía clara para la construcción. Cada plano se desarrolla considerando aspectos estructurales, funcionales, estéticos y sostenibles, asegurando que el proyecto final cumpla con todas las expectativas y requisitos.",
+        benefits: [
+          "Planos detallados y a escala con especificaciones técnicas",
+          "Diseños que cumplen con normativas y códigos de construcción",
+          "Representaciones 3D y visualizaciones realistas",
+          "Documentación completa para permisos de construcción",
+          "Asesoramiento durante el proceso de construcción",
+        ],
+        image: "/services2.jpeg?height=600&width=800",
+      },
+      {
+        id: 3,
+        icon: <Lightbulb className="h-10 w-10 text-accent" />,
+        title: "Consultoría",
+        description:
+          "Ofrecemos asesoramiento experto en todas las etapas de su proyecto, desde la conceptualización inicial hasta la finalización.",
+        fullDescription:
+          "Nuestro servicio de consultoría arquitectónica proporciona orientación profesional para ayudarle a tomar decisiones informadas en cada fase de su proyecto. Ya sea que esté considerando una renovación, una construcción nueva o simplemente necesite asesoramiento sobre aspectos específicos, nuestro equipo de expertos le brindará soluciones prácticas y creativas. Analizamos cada situación desde múltiples perspectivas, considerando factores como presupuesto, cronograma, sostenibilidad y valor a largo plazo.",
+        benefits: [
+          "Evaluación de viabilidad y análisis de sitio",
+          "Asesoramiento en selección de materiales y tecnologías",
+          "Optimización de presupuesto y recursos",
+          "Soluciones para eficiencia energética y sostenibilidad",
+          "Gestión de proyectos y coordinación con contratistas",
+        ],
+        image: "/services3.jpeg?height=600&width=800",
+      },
+      {
+        id: 4,
+        icon: <GiFamilyHouse className="h-10 w-10 text-accent" />,
+        title: "Diseño de Mobiliario",
+        description:
+          "El diseño de mobiliario, tanto para interiores como para exteriores, es un arte que combina funcionalidad y estética, transformando espacios en verdaderos hogares.",
+        fullDescription:
+          "El diseño de mobiliario, tanto para interiores como para exteriores, es un arte que combina funcionalidad y estética, transformando espacios en verdaderos hogares. En el interior, cada pieza de mobiliario se elige cuidadosamente para complementar el estilo de vida de los habitantes, desde sofás confortables que invitan a la relajación, hasta mesas de comedor que fomentan la convivencia familiar. Los materiales utilizados, como la madera natural, el metal y los textiles, no solo aportan belleza, sino también durabilidad y calidez al ambiente. Por otro lado, el diseño de mobiliario exterior busca crear un refugio en la naturaleza, donde los muebles resisten las inclemencias del tiempo sin perder su atractivo. Sillas, mesas y tumbonas están pensadas para disfrutar del aire libre, ofreciendo comodidad y estilo a jardines, terrazas y patios. En cada proyecto, la creatividad se fusiona con la ergonomía, garantizando que cada pieza no solo sea visualmente atractiva, sino que también mejore la calidad de vida de quienes la utilizan. Este enfoque holístico en el diseño de mobiliario busca crear espacios armónicos que reflejen la personalidad de sus dueños y se adapten a sus necesidades cotidianas.",
+        benefits: [
+          "Evaluación de viabilidad y análisis de sitio",
+          "Asesoramiento en selección de materiales y tecnologías",
+          "Optimización de presupuesto y recursos",
+          "Soluciones para eficiencia energética y sostenibilidad",
+          "Gestión de proyectos y coordinación con contratistas",
+        ],
+        image: "/services4.jpeg?height=600&width=800",
+      },
+      {
+        id: 5,
+        icon: <MdChair className="h-10 w-10 text-accent" />,
+        title: "Arte para tu hogar",
+        description:
+          "En el mundo del arte, ofrecemos una amplia gama de opciones para transformar y embellecer tu vivienda.",
+        fullDescription:
+          `En el mundo del arte, ofrecemos una amplia gama de opciones para transformar y embellecer tu vivienda. Nuestra colección incluye esculturas únicas, que añaden un toque de elegancia y carácter a cualquier espacio. Cada pieza es cuidadosamente elaborada, reflejando la creatividad y el talento de los artistas, lo que permite que cada rincón de tu hogar cuente una historia a través del arte tridimensional. 
+        Además, contamos con una selección de cuadros que abarcan diversos estilos, desde obras contemporáneas hasta clásicos atemporales. Estos cuadros no solo adornan las paredes, sino que también crean un ambiente acogedor y atractivo, invitando a la contemplación y al diálogo. Cada obra está diseñada para complementar la decoración de tu hogar, proporcionando un punto focal que captura la atención de tus visitantes.
+        Por si fuera poco, también ofrecemos una variedad de suministros creativos para aquellos que desean explorar su propia creatividad. Desde lienzos de diferentes tamaños hasta pinturas, pinceles y herramientas especializadas, tenemos todo lo necesario para que puedas dar rienda suelta a tu talento artístico. Ya seas un artista experimentado o un principiante entusiasta, nuestros materiales de alta calidad te inspirarán a crear obras maestras en la comodidad de tu hogar.
+        En resumen, nuestra oferta abarca desde esculturas y cuadros que realzan la estética de tu vivienda, hasta suministros artísticos que fomentan la creatividad. Invita el arte a tu vida y transforma tu hogar en un espacio lleno de inspiración y belleza.`,
+        benefits: [
+          "Evaluación de viabilidad y análisis de sitio",
+          "Asesoramiento en selección de materiales y tecnologías",
+          "Optimización de presupuesto y recursos",
+          "Soluciones para eficiencia energética y sostenibilidad",
+          "Gestión de proyectos y coordinación con contratistas",
+        ],
+        image: "/services5.jpeg?height=600&width=800",
+      },
+    ],
+    en: [
+      {
+        id: 1,
+        icon: <Home className="h-10 w-10 text-accent" />,
+        title: "Interior Design and Renovation",
+        description:
+          "We transform interior spaces to create functional and aesthetically pleasing environments that reflect your personality and lifestyle.",
+        fullDescription:
+          "Our interior design service covers everything from the initial concept to the final implementation. We work closely with each client to understand their needs, preferences, and lifestyle, creating spaces that are not only beautiful but also functional and personalized. We use the latest design trends, sustainable materials, and innovative solutions to transform any space into an inspiring environment that enhances quality of life.",
+        benefits: [
+          "Custom design tailored to your needs and style",
+          "Selection of materials, furniture, and accessories",
+          "Space and functionality optimization",
+          "Lighting and color palette advice",
+          "Supervision of design implementation",
+        ],
+        image: "/services1.jpeg?height=600&width=800",
+      },
+      {
+        id: 2,
+        icon: <Compass className="h-10 w-10 text-accent" />,
+        title: "Architectural Plans",
+        description:
+          "We develop detailed and accurate architectural plans for residential, commercial, and institutional projects.",
+        fullDescription:
+          "Our architectural plans are the result of a meticulous process that combines creativity, technical precision, and regulatory compliance. We use advanced design software to create detailed representations that serve as a clear guide for construction. Each plan is developed considering structural, functional, aesthetic, and sustainable aspects, ensuring the final project meets all expectations and requirements.",
+        benefits: [
+          "Detailed and scaled plans with technical specifications",
+          "Designs compliant with building codes and regulations",
+          "3D representations and realistic visualizations",
+          "Complete documentation for building permits",
+          "Consulting throughout the construction process",
+        ],
+        image: "/services2.jpeg?height=600&width=800",
+      },
+      {
+        id: 3,
+        icon: <Lightbulb className="h-10 w-10 text-accent" />,
+        title: "Consulting",
+        description:
+          "We offer expert advice at all stages of your project, from the initial concept to completion.",
+        fullDescription:
+          "Our architectural consulting service provides professional guidance to help you make informed decisions at every stage of your project. Whether you are considering a renovation, new construction, or just need advice on specific aspects, our team of experts will provide practical and creative solutions. We analyze each situation from multiple perspectives, considering factors such as budget, timeline, sustainability, and long-term value.",
+        benefits: [
+          "Feasibility studies and site analysis",
+          "Advice on materials and technology selection",
+          "Budget and resource optimization",
+          "Solutions for energy efficiency and sustainability",
+          "Project management and contractor coordination",
+        ],
+        image: "/services3.jpeg?height=600&width=800",
+      },
+      {
+        id: 4,
+        icon: <GiFamilyHouse className="h-10 w-10 text-accent" />,
+        title: "Furniture Design",
+        description:
+          "Furniture design, both indoors and outdoors, is an art that blends functionality and aesthetics, transforming spaces into true homes.",
+        fullDescription:
+          "Furniture design, for both interior and exterior settings, is an art that combines functionality and aesthetics, transforming spaces into true homes. Indoors, each piece is carefully selected to complement the lifestyle of the inhabitants, from comfortable sofas that invite relaxation to dining tables that encourage family bonding. The materials used—such as natural wood, metal, and textiles—not only provide beauty but also durability and warmth. On the other hand, outdoor furniture design aims to create a sanctuary in nature, where furnishings withstand the elements without losing their appeal. Chairs, tables, and loungers are crafted for outdoor enjoyment, offering comfort and style to gardens, terraces, and patios. In every project, creativity is fused with ergonomics, ensuring each piece is not only visually attractive but also enhances the quality of life. This holistic approach to furniture design seeks to create harmonious spaces that reflect the owner's personality and adapt to daily needs.",
+        benefits: [
+          "Feasibility studies and site analysis",
+          "Advice on materials and technology selection",
+          "Budget and resource optimization",
+          "Solutions for energy efficiency and sustainability",
+          "Project management and contractor coordination",
+        ],
+        image: "/services4.jpeg?height=600&width=800",
+      },
+      {
+        id: 5,
+        icon: <MdChair className="h-10 w-10 text-accent" />,
+        title: "Art for Your Home",
+        description:
+          "In the world of art, we offer a wide range of options to transform and beautify your home.",
+        fullDescription:
+          `In the world of art, we offer a wide range of options to transform and beautify your home. Our collection includes unique sculptures that add a touch of elegance and character to any space. Each piece is carefully crafted, reflecting the creativity and talent of the artists, allowing every corner of your home to tell a story through three-dimensional art.
+        In addition, we offer a selection of paintings in various styles, from contemporary works to timeless classics. These pieces not only decorate your walls but also create a cozy and appealing atmosphere, inviting contemplation and dialogue. Each work is designed to complement your home's décor, providing a focal point that captures the attention of your visitors.
+        Furthermore, we provide a variety of creative supplies for those who wish to explore their own artistic talents. From canvases of different sizes to paints, brushes, and specialized tools, we have everything you need to unleash your creativity. Whether you're an experienced artist or an enthusiastic beginner, our high-quality materials will inspire you to create masterpieces in the comfort of your home.
+        In short, our offerings range from sculptures and paintings that enhance the aesthetics of your home to artistic supplies that encourage creativity. Bring art into your life and transform your home into a space full of inspiration and beauty.`,
+        benefits: [
+          "Feasibility studies and site analysis",
+          "Advice on materials and technology selection",
+          "Budget and resource optimization",
+          "Solutions for energy efficiency and sustainability",
+          "Project management and contractor coordination",
+        ],
+        image: "/services5.jpeg?height=600&width=800",
+      },
+    ]
+  },
 
   // Portfolio
   portfolioTitle: { es: "Portafolio", en: "Portfolio" },
@@ -374,14 +560,51 @@ const translations: Translations = {
       image: "/placeholder.svg?height=300&width=500",
       cta: "Ver detalles",
     }
-    ,
-  }
+  },
+
+  // 
+  goBack: {
+    es: "Volver al proyecto",
+    en: "Back to project"
+  },
+  fullName: {
+    es: "Nombre completo",
+    en: "Full Name"
+  },
+  phone: {
+    es: "Teléfono",
+    en: "Phone"
+  },
+  location: {
+    es: "Ubicación del proyecto",
+    en: "Project Location"
+  },
+  budget: {
+    es: "Presupuesto estimado",
+    en: "Estimated Budget"
+  },
+  timeframe: {
+    es: "Plazo deseado",
+    en: "Desired Timeframe"
+  },
+  detailAditional: {
+    es: "Detalles adicionales",
+    en: "Additional Details"
+  },
+  acceptTerms: {
+    es: "Acepto que mis datos sean procesados de acuerdo con la política de privacidad para recibir comunicaciones relacionadas con mi solicitud.",
+    en: "I agree that my data will be processed in accordance with the privacy policy to receive communications related to my request." 
+  },
+  sendRequest: {
+    es: "Enviar solicitud",
+    en: "Send Request"
+  },
 }
 
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string | string[] | PromoModalContent | AboutPersonal[]
+  t: (key: string) => string | string[] | PromoModalContent | AboutPersonal[] | Service[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -397,7 +620,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const t = (key: string): string | string[] | PromoModalContent | AboutPersonal[] => {
+  const t = (key: string): string | string[] | PromoModalContent | AboutPersonal[] | Service[] => {
     if (!translations[key]) {
       console.warn(`Translation key "${key}" not found.`)
       return key

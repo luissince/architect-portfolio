@@ -9,7 +9,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Home, Compass, Palette, Building, Calculator, Phone, Sun, Moon, Monitor, Search } from "lucide-react"
-import { useLanguage } from "@/context/language-context"
+import { Service, useLanguage } from "@/context/language-context"
 
 export function SearchModal() {
   const { t } = useLanguage()
@@ -147,23 +147,29 @@ export function SearchModal() {
     },
   ]
 
-  const services = [
-    {
-      id: "1",
-      name: t("interiorDesign"),
-      keywords: ["diseño", "interior", "espacios", "decoración"],
-    },
-    {
-      id: "2",
-      name: t("architecturalPlans"),
-      keywords: ["planos", "arquitectónicos", "diseño", "construcción"],
-    },
-    {
-      id: "3",
-      name: t("consulting"),
-      keywords: ["consultoría", "asesoramiento", "consejo", "experto"],
-    },
-  ]
+  // const services = [
+  //   {
+  //     id: "1",
+  //     name: t("interiorDesign"),
+  //     keywords: ["diseño", "interior", "espacios", "decoración"],
+  //   },
+  //   {
+  //     id: "2",
+  //     name: t("architecturalPlans"),
+  //     keywords: ["planos", "arquitectónicos", "diseño", "construcción"],
+  //   },
+  //   {
+  //     id: "3",
+  //     name: t("consulting"),
+  //     keywords: ["consultoría", "asesoramiento", "consejo", "experto"],
+  //   },
+  // ]
+
+  const services = (t("servicesList") as Service[]).map((service, index) => ({
+    id: index + 1,
+    name: service.title,
+    keywords: service.benefits
+  }));
 
   const themes = [
     {

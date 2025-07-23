@@ -14,7 +14,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { Home, Compass, Palette, Building, Calculator, Phone, Sun, Moon, Monitor } from "lucide-react"
-import { useLanguage } from "@/context/language-context"
+import { Service, useLanguage } from "@/context/language-context"
 
 export function SearchCommand() {
   const { t } = useLanguage()
@@ -38,19 +38,19 @@ export function SearchCommand() {
   const sections = [
     {
       id: "home",
-      name: t("home"),
+      name: t("home").toString(),
       icon: <Home className="mr-2 h-4 w-4" />,
       keywords: ["inicio", "home", "principal"],
     },
     {
       id: "about",
-      name: t("about"),
+      name: t("about").toString(),
       icon: <Compass className="mr-2 h-4 w-4" />,
       keywords: ["sobre mi", "about", "acerca", "historia", "experiencia"],
     },
     {
       id: "services",
-      name: t("services"),
+      name: t("services").toString(),
       icon: <Palette className="mr-2 h-4 w-4" />,
       keywords: ["servicios", "diseño", "planos", "consultoría"],
     },
@@ -62,19 +62,19 @@ export function SearchCommand() {
     },
     {
       id: "products",
-      name: t("products"),
+      name: t("products").toString(),
       icon: <Palette className="mr-2 h-4 w-4" />,
       keywords: ["productos", "muebles", "decoración", "materiales"],
     },
     {
       id: "calculator",
-      name: t("calculator"),
+      name: t("calculator").toString(),
       icon: <Calculator className="mr-2 h-4 w-4" />,
       keywords: ["calculadora", "precios", "presupuesto", "costos"],
     },
     {
       id: "contact",
-      name: t("contact"),
+      name: t("contact").toString(),
       icon: <Phone className="mr-2 h-4 w-4" />,
       keywords: ["contacto", "email", "teléfono", "ubicación"],
     },
@@ -140,23 +140,29 @@ export function SearchCommand() {
     },
   ]
 
-  const services = [
-    {
-      id: "1",
-      name: t("interiorDesign"),
-      keywords: ["diseño", "interior", "espacios", "decoración"],
-    },
-    {
-      id: "2",
-      name: t("architecturalPlans"),
-      keywords: ["planos", "arquitectónicos", "diseño", "construcción"],
-    },
-    {
-      id: "3",
-      name: t("consulting"),
-      keywords: ["consultoría", "asesoramiento", "consejo", "experto"],
-    },
-  ]
+  // const services = [
+  //   {
+  //     id: "1",
+  //     name: t("interiorDesign").toString(),
+  //     keywords: ["diseño", "interior", "espacios", "decoración"],
+  //   },
+  //   {
+  //     id: "2",
+  //     name: t("architecturalPlans").toString(),
+  //     keywords: ["planos", "arquitectónicos", "diseño", "construcción"],
+  //   },
+  //   {
+  //     id: "3",
+  //     name: t("consulting").toString(),
+  //     keywords: ["consultoría", "asesoramiento", "consejo", "experto"],
+  //   },
+  // ]
+
+  const services = (t("servicesList") as Service[]).map((service, index) => ({ 
+     id: index + 1,
+     name: service.title,
+     keywords: service.benefits
+   }));
 
   const runCommand = React.useCallback((command: () => void) => {
     setOpen(false)

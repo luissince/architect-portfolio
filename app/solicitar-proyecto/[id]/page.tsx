@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams, notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -49,12 +49,13 @@ export default function RequestProjectPage() {
   const projectId = params?.id as string
 
   const [isServiceRequest, setIsServiceRequest] = useState(false)
-  const [serviceId, setServiceId] = useState(null)
+  const [serviceId, setServiceId] = useState<string | null>(null)
 
-  useState(() => {
+  useEffect(() => {
     const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "")
+    const serviceId = searchParams.get("serviceId") as string
     setIsServiceRequest(searchParams.get("type") === "service")
-    setServiceId(searchParams.get("serviceId"))
+    setServiceId(serviceId)
   }, [])
 
   // Verificar si tenemos un ID válido
@@ -70,7 +71,7 @@ export default function RequestProjectPage() {
   }
 
   const { regionData } = useRegion()
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   const [formState, setFormState] = useState({
     name: "",
@@ -119,7 +120,7 @@ export default function RequestProjectPage() {
           className="inline-flex items-center text-accent hover:text-accent/80 mb-8"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Volver al proyecto
+          {t("goBack").toString()}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -130,14 +131,11 @@ export default function RequestProjectPage() {
             <p className="text-muted-foreground mb-8">
               {isServiceRequest ? (
                 <>
-                  Complete el siguiente formulario para solicitar nuestro servicio. Nos pondremos en contacto con usted
-                  para discutir los detalles.
+                  {language === "es" ? "Complete el siguiente formulario para solicitar nuestro servicio. Nos pondremos en contacto con usted para discutir los detalles." : "Complete the following form to request our service. We will contact you to discuss the details."}
                 </>
               ) : (
                 <>
-                  Complete el siguiente formulario para solicitar un proyecto inspirado en{" "}
-                  <span className="font-medium text-foreground">{project.title}</span>. Nos pondremos en contacto con
-                  usted para discutir los detalles.
+                  {language === "es" ? "Complete el siguiente formulario para solicitar un proyecto inspirado en" : "Complete the following form to request a project inspired by"} <span className="font-medium text-foreground">{project.title}</span>. {language === "es" ? "Nos pondremos en contacto con usted para discutir los detalles." : "We will contact you to discuss the details."}
                 </>
               )}
             </p>
@@ -147,25 +145,24 @@ export default function RequestProjectPage() {
                 <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
                   <Check className="h-8 w-8 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-semibold mb-4">¡Solicitud enviada con éxito!</h2>
+                <h2 className="text-2xl font-semibold mb-4"> {language === "es" ? "¡Solicitud enviada con éxito!" : "Request submitted successfully!"}</h2>
                 <p className="text-muted-foreground mb-6">
-                  Gracias por su interés en nuestros servicios. Hemos recibido su solicitud y nos pondremos en contacto
-                  con usted en las próximas 24-48 horas para discutir los detalles de su proyecto.
+                  {language === "es" ? "Gracias por su interés en nuestros servicios. Hemos recibido su solicitud y nos pondremos en contacto con usted en las próximas 24-48 horas para discutir los detalles de su proyecto." : "Thank you for your interest in our services. We have received your request and will contact you in the next 24-48 hours to discuss the details of your project."}
                 </p>
                 <Link href="/">
-                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Volver al inicio</Button>
+                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground"> {language === "es" ? "Volver al inicio" : "Back to home"}</Button>
                 </Link>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nombre completo *</Label>
+                    <Label htmlFor="name">{t("fullName").toString()} *</Label>
                     <Input id="name" name="name" value={formState.name} onChange={handleChange} required />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email">Correo electrónico *</Label>
+                    <Label htmlFor="email">{t("email").toString()} *</Label>
                     <Input
                       id="email"
                       name="email"
@@ -177,24 +174,24 @@ export default function RequestProjectPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Teléfono *</Label>
+                    <Label htmlFor="phone">{t("phone").toString()} *</Label>
                     <Input id="phone" name="phone" value={formState.phone} onChange={handleChange} required />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="location">Ubicación del proyecto *</Label>
+                    <Label htmlFor="location">{t("location").toString()} *</Label>
                     <Input
                       id="location"
                       name="location"
                       value={formState.location}
                       onChange={handleChange}
                       required
-                      placeholder="Ciudad, País"
+                      placeholder={language === "es" ? "Ciudad, País" : "City, Country"}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="budget">Presupuesto estimado</Label>
+                    <Label htmlFor="budget">{t("budget").toString()}</Label>
                     <Input
                       id="budget"
                       name="budget"
@@ -205,7 +202,7 @@ export default function RequestProjectPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="timeframe">Plazo deseado</Label>
+                    <Label htmlFor="timeframe">{t("timeframe").toString()}</Label>
                     <Select
                       value={formState.timeframe}
                       onValueChange={(value) => handleSelectChange("timeframe", value)}
@@ -214,18 +211,18 @@ export default function RequestProjectPage() {
                         <SelectValue placeholder="Seleccione un plazo" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="urgent">Urgente (1-3 meses)</SelectItem>
-                        <SelectItem value="short">Corto plazo (3-6 meses)</SelectItem>
-                        <SelectItem value="medium">Medio plazo (6-12 meses)</SelectItem>
-                        <SelectItem value="long">Largo plazo (más de 12 meses)</SelectItem>
-                        <SelectItem value="flexible">Flexible</SelectItem>
+                        <SelectItem value="urgent">{language === "es" ? "Urgente (1-3 meses)" : "Urgent (1-3 months)"}</SelectItem>
+                        <SelectItem value="short">{language === "es" ? "Corto plazo (3-6 meses)" : "Short (3-6 months)"}</SelectItem>
+                        <SelectItem value="medium">{language === "es" ? "Medio plazo (6-12 meses)" : "Medium (6-12 months)"}</SelectItem>
+                        <SelectItem value="long">{language === "es" ? "Largo plazo (más de 12 meses)" : "Long (more than 12 months)"}</SelectItem>
+                        <SelectItem value="flexible">{language === "es" ? "Flexible" : "Flexible"}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Detalles adicionales *</Label>
+                  <Label htmlFor="message">{t("detailAditional").toString()} *</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -233,7 +230,7 @@ export default function RequestProjectPage() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    placeholder="Describa su proyecto, necesidades específicas, preferencias de diseño, etc."
+                    placeholder={language === "es" ? "Describa su proyecto, necesidades específicas, preferencias de diseño, etc." : "Describe your project, specific needs, design preferences, etc."}
                   />
                 </div>
 
@@ -245,8 +242,7 @@ export default function RequestProjectPage() {
                     required
                   />
                   <Label htmlFor="terms" className="text-sm leading-tight">
-                    Acepto que mis datos sean procesados de acuerdo con la política de privacidad para recibir
-                    comunicaciones relacionadas con mi solicitud. *
+                    {t("acceptTerms").toString()}
                   </Label>
                 </div>
 
@@ -255,7 +251,7 @@ export default function RequestProjectPage() {
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
                   disabled={!formState.acceptTerms}
                 >
-                  Enviar solicitud
+                  {t("sendRequest").toString()}
                 </Button>
               </form>
             )}
@@ -263,7 +259,7 @@ export default function RequestProjectPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <div className="bg-card rounded-lg shadow-md p-6 mb-8">
+              {/* <div className="bg-card rounded-lg shadow-md p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-4">Proyecto de referencia</h3>
 
                 <div className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
@@ -302,31 +298,31 @@ export default function RequestProjectPage() {
                     <span>{project.year}</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="bg-secondary/50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-4">¿Por qué trabajar con nosotros?</h3>
+                <h3 className="text-lg font-semibold mb-4"> {language === "es" ? "¿Por qué trabajar con nosotros?" : "Why work with us?"}</h3>
 
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <Check className="h-5 w-5 text-accent mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Más de 10 años de experiencia en arquitectura</span>
+                    <span> {language === "es" ? "Más de 10 años de experiencia en arquitectura" : "More than 10 years of experience in architecture"}</span>
                   </li>
                   <li className="flex items-start">
                     <Check className="h-5 w-5 text-accent mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Enfoque personalizado para cada cliente</span>
+                    <span> {language === "es" ? "Enfoque personalizado para cada cliente" : "Customized focus for each client"}</span>
                   </li>
                   <li className="flex items-start">
                     <Check className="h-5 w-5 text-accent mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Diseños sostenibles y eficientes</span>
+                    <span> {language === "es" ? "Diseños sostenibles y eficientes" : "Sustainable and efficient designs"}</span>
                   </li>
                   <li className="flex items-start">
                     <Check className="h-5 w-5 text-accent mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Atención al detalle en cada proyecto</span>
+                    <span> {language === "es" ? "Atención al detalle en cada proyecto" : "Attention to detail in each project"}</span>
                   </li>
                   <li className="flex items-start">
                     <Check className="h-5 w-5 text-accent mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Comunicación clara durante todo el proceso</span>
+                    <span> {language === "es" ? "Comunicación clara durante todo el proceso" : "Clear communication throughout the process"}</span>
                   </li>
                 </ul>
               </div>
