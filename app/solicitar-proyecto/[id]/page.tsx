@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useEffect, useState } from "react"
-import { useParams, notFound } from "next/navigation"
+import { useParams, notFound, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
@@ -16,62 +16,31 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { ArrowLeft, Check } from "lucide-react"
 import { useRegion } from "@/context/region-context"
-import { useLanguage } from "@/context/language-context"
+import { Service, useLanguage } from "@/context/language-context"
 import SocialFloatButtons from "@/components/social-float-buttons"
 
-// Datos simulados de proyectos (mismos que en la página de detalle)
-const projects = [
-  {
-    id: "1",
-    title: "Casa Moderna Pinar",
-    description: "Residencia minimalista con amplios espacios abiertos y luz natural.",
-    category: "residential",
-    location: "Madrid, España",
-    year: "2022",
-    images: ["/placeholder.svg?height=600&width=800"],
-    client: "Familia Rodríguez",
-  },
-  {
-    id: "2",
-    title: "Oficinas Creativas Nexus",
-    description: "Espacio de trabajo colaborativo diseñado para fomentar la creatividad y el bienestar.",
-    category: "commercial",
-    location: "Barcelona, España",
-    year: "2021",
-    images: ["/placeholder.svg?height=600&width=800"],
-    client: "Nexus Innovations",
-  },
-  // Más proyectos...
-]
-
 export default function RequestProjectPage() {
-  const params = useParams()
-  const projectId = params?.id as string
+  const router = useRouter()
+  const { t, language } = useLanguage()
+  // const params = useParams()
+  // const projectId = params?.id as string
 
-  const [isServiceRequest, setIsServiceRequest] = useState(false)
-  const [serviceId, setServiceId] = useState<string | null>(null)
+  const [dataService, setDataService] = useState<Service | null>(null)
+
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "")
     const serviceId = searchParams.get("serviceId") as string
-    setIsServiceRequest(searchParams.get("type") === "service")
-    setServiceId(serviceId)
-  }, [])
-
-  // Verificar si tenemos un ID válido
-  if (!projectId) {
-    return notFound()
-  }
-
-  const project = projects.find((p) => p.id === projectId)
-
-  // Si no se encuentra el proyecto, mostrar la página 404
-  if (!project) {
-    return notFound()
-  }
+    const service = (t("servicesList") as Service[]).find((s) => s.id.toString() === serviceId);
+    setDataService(service!)
+  }, [language])
 
   const { regionData } = useRegion()
-  const { t, language } = useLanguage()
 
   const [formState, setFormState] = useState({
     name: "",
@@ -110,26 +79,38 @@ export default function RequestProjectPage() {
     }, 1000)
   }
 
+  if (!mounted) {
+    return null
+  }
+
+  if (!dataService) {
+    return notFound()
+  }
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
 
       <div className="container mx-auto px-4 py-12 mt-20">
-        <Link
-          href={`/proyecto/${project.id}`}
+        <button
+          onClick={() => router.back()}
           className="inline-flex items-center text-accent hover:text-accent/80 mb-8"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           {t("goBack").toString()}
-        </Link>
+        </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              {isServiceRequest ? "Solicitar servicio" : "Solicitar un proyecto similar"}
+              {/* {isServiceRequest ? "Solicitar servicio" : "Solicitar un proyecto similar"} */}
+              {language === "es" ? "Solicitar servicio de " + dataService?.title : "Request service" + dataService?.title}
             </h1>
             <p className="text-muted-foreground mb-8">
-              {isServiceRequest ? (
+              {language === "es" ?
+                "Complete el siguiente formulario para solicitar nuestro servicio. Nos pondremos en contacto con usted para discutir los detalles." :
+                "Complete the following form to request our service. We will contact you to discuss the details."}
+              {/* {isServiceRequest ? (
                 <>
                   {language === "es" ? "Complete el siguiente formulario para solicitar nuestro servicio. Nos pondremos en contacto con usted para discutir los detalles." : "Complete the following form to request our service. We will contact you to discuss the details."}
                 </>
@@ -137,7 +118,7 @@ export default function RequestProjectPage() {
                 <>
                   {language === "es" ? "Complete el siguiente formulario para solicitar un proyecto inspirado en" : "Complete the following form to request a project inspired by"} <span className="font-medium text-foreground">{project.title}</span>. {language === "es" ? "Nos pondremos en contacto con usted para discutir los detalles." : "We will contact you to discuss the details."}
                 </>
-              )}
+              )} */}
             </p>
 
             {isSubmitted ? (
@@ -259,25 +240,25 @@ export default function RequestProjectPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              {/* <div className="bg-card rounded-lg shadow-md p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-4">Proyecto de referencia</h3>
+              <div className="bg-card rounded-lg shadow-md p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-4">{language === "es" ? "Proyecto de referencia" : "Project reference"}</h3>
 
                 <div className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
                   <Image
-                    src={project.images[0] || "/placeholder.svg"}
-                    alt={project.title}
+                    src={dataService?.image || "/placeholder.svg"}
+                    alt={dataService?.title!}
                     fill
                     className="object-cover"
                   />
                 </div>
 
-                <h4 className="font-semibold text-lg mb-2">{project.title}</h4>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
+                <h4 className="font-semibold text-lg mb-2">{dataService?.title}</h4>
+                <p className="text-muted-foreground mb-4">{dataService?.description}</p>
 
                 <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Categoría:</span>
-                    <span>
+                  <div className="flex flex-col">
+                    {/* <span className="text-muted-foreground">{language === "es" ? "Categoría:" : "Category:"}</span> */}
+                    {/* <span>
                       {project.category === "residential"
                         ? "Residencial"
                         : project.category === "commercial"
@@ -285,20 +266,20 @@ export default function RequestProjectPage() {
                           : project.category === "renovation"
                             ? "Renovación"
                             : "Público"}
-                    </span>
+                    </span> */}
                   </div>
 
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Ubicación:</span>
+                  {/* <div className="flex justify-between">
+                    <span className="text-muted-foreground">{language === "es" ? "Ubicación:" : "Location:"}</span>
                     <span>{project.location}</span>
                   </div>
 
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Año:</span>
+                    <span className="text-muted-foreground">{language === "es" ? "Año:" : "Year:"}</span>
                     <span>{project.year}</span>
-                  </div>
+                  </div> */}
                 </div>
-              </div> */}
+              </div>
 
               <div className="bg-secondary/50 rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-4"> {language === "es" ? "¿Por qué trabajar con nosotros?" : "Why work with us?"}</h3>
