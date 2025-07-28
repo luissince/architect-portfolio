@@ -71,9 +71,7 @@ export default function ImageGallery({ images, videos = [], alt }: ImageGalleryP
                 className="w-full h-full object-contain"
                 controls
                 autoPlay={fullscreen}
-                muted={fullscreen}
                 loop
-                playsInline={!fullscreen}
               />
             ) : (
               <div className="relative w-full h-full">
@@ -106,15 +104,19 @@ export default function ImageGallery({ images, videos = [], alt }: ImageGalleryP
         {allMedia.map((media, index) => (
           <div
             key={index}
-            className={`relative flex-shrink-0 w-16 h-16 rounded-md overflow-hidden cursor-pointer border-2 transition-all ${
-              index === currentIndex ? "border-accent" : "border-transparent"
-            }`}
+            className={`relative flex-shrink-0 w-16 h-16 rounded-md overflow-hidden cursor-pointer border-2 transition-all ${index === currentIndex ? "border-accent" : "border-transparent"
+              }`}
             onClick={() => setCurrentIndex(index)}
           >
             {media.type === "video" ? (
               <div className="relative w-full h-full bg-black">
                 <Play className="absolute inset-0 m-auto text-white w-6 h-6" />
-                <video src={media.src} className="w-full h-full object-cover opacity-70" />
+                <video
+                  src={media.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline className="w-full h-full object-cover opacity-70" />
               </div>
             ) : (
               <Image

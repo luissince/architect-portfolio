@@ -80,7 +80,7 @@ jobs:
   clean-ecr-images:
     name: Borrar imágenes antiguas de ECR
     runs-on: ubuntu-latest
-    needs: [build-nextjs]
+    needs: deploy-nextjs
     environment: front-end
 
     steps:
