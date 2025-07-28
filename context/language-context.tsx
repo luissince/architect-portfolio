@@ -18,6 +18,54 @@ export type Service = {
   image: string
 }
 
+export type CommentReply = {
+  id: string
+  author: {
+    name: string
+    initials: string
+    isAdmin?: boolean
+  }
+  content: string
+  date: Date
+  likes: number
+  isLiked: boolean
+}
+
+export type Comment = {
+  id: string
+  author: {
+    name: string
+    initials: string
+    isAdmin?: boolean
+  }
+  content: string
+  date: Date
+  likes: number
+  isLiked: boolean
+  isQuestion: boolean
+  replies?: CommentReply[]
+}
+
+export type Project = {
+  id: number
+  title: string
+  description: string
+  fullDescription: string
+  category: string
+  location: string
+  year: string
+  images: string[]
+  video: string
+  model3d: string
+  client: string
+  architect: string
+  area: string
+  duration: string
+  services: string[]
+  features: string[]
+  comments: Comment[]
+}
+
 export type AboutPersonal = {
   period?: string
   year?: string
@@ -36,8 +84,8 @@ export type PromoModalContent = {
 
 type Translations = {
   [key: string]: {
-    es: string | string[] | PromoModalContent | AboutPersonal[] | Service[]
-    en: string | string[] | PromoModalContent | AboutPersonal[] | Service[]
+    es: string | string[] | PromoModalContent | AboutPersonal[] | Service[] | Project[]
+    en: string | string[] | PromoModalContent | AboutPersonal[] | Service[] | Project[]
   }
 }
 
@@ -490,6 +538,767 @@ const translations: Translations = {
   commercial: { es: "Comercial", en: "Commercial" },
   renovation: { es: "Renovación", en: "Renovation" },
   public: { es: "Público", en: "Public" },
+  projectsList: {
+    es: [
+      {
+        id: 1,
+        title: "Casa Moderna Pinar",
+        description:
+          "Residencia minimalista con amplios espacios abiertos y luz natural. Diseñada para una familia joven que buscaba un espacio contemporáneo pero acogedor, esta casa incorpora materiales sostenibles y un diseño bioclimático que reduce el consumo energético.",
+        fullDescription:
+          "Esta residencia minimalista fue diseñada para una familia joven que buscaba un espacio contemporáneo pero acogedor. El proyecto se desarrolló en un terreno de 800m² con orientación norte-sur, lo que permitió aprovechar al máximo la luz natural durante todo el día.\n" +
+          "La casa se estructura en dos volúmenes principales conectados por un puente acristalado que funciona como galería y espacio de transición. El volumen principal alberga las áreas sociales en planta baja (salón, comedor y cocina integrada) y los dormitorios en la planta superior. El segundo volumen contiene un estudio, gimnasio y zona de invitados.\n" +
+          "Los materiales utilizados incluyen hormigón visto, madera de roble y grandes superficies acristaladas con carpintería de aluminio de alta eficiencia térmica. La sostenibilidad fue un factor clave en el diseño, incorporando paneles solares, sistema de recolección de agua de lluvia y aislamiento térmico de alto rendimiento.",
+
+        category: "residential",
+        location: "Madrid, España",
+        year: "2022",
+        images: [
+          // "/ima<gen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",>
+        ],
+        video: "/CASANOEL.mp4",
+        model3d: "/house.glb",
+        client: "Familia Rodríguez",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 meses",
+        services: ["Diseño arquitectónico", "Diseño de interiores", "Supervisión de obra"],
+        features: [
+          "Diseño bioclimático",
+          "Eficiencia energética",
+          "Domótica integrada",
+          "Jardín sostenible",
+          "Piscina de agua salada",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: "Oficinas Creativas Nexus",
+        description:
+          "Espacio de trabajo colaborativo diseñado para fomentar la creatividad y el bienestar. Este proyecto transforma un antiguo almacén industrial en un entorno de trabajo dinámico con áreas flexibles, zonas de descanso y elementos naturales integrados.",
+        fullDescription:
+          "Esta residencia minimalista fue diseñada para una familia joven que buscaba un espacio contemporáneo pero acogedor. El proyecto se desarrolló en un terreno de 800m² con orientación norte-sur, lo que permitió aprovechar al máximo la luz natural durante todo el día.\n" +
+          "La casa se estructura en dos volúmenes principales conectados por un puente acristalado que funciona como galería y espacio de transición. El volumen principal alberga las áreas sociales en planta baja (salón, comedor y cocina integrada) y los dormitorios en la planta superior. El segundo volumen contiene un estudio, gimnasio y zona de invitados.\n" +
+          "Los materiales utilizados incluyen hormigón visto, madera de roble y grandes superficies acristaladas con carpintería de aluminio de alta eficiencia térmica. La sostenibilidad fue un factor clave en el diseño, incorporando paneles solares, sistema de recolección de agua de lluvia y aislamiento térmico de alto rendimiento.",
+
+        category: "commercial",
+        location: "Barcelona, España",
+        year: "2021",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/FRITO.mp4",
+        model3d: "/house.glb",
+        client: "Nexus Innovations",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 meses",
+        services: ["Diseño arquitectónico", "Diseño de interiores", "Supervisión de obra"],
+        features: [
+          "Diseño bioclimático",
+          "Eficiencia energética",
+          "Domótica integrada",
+          "Jardín sostenible",
+          "Piscina de agua salada",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 3,
+        title: "Restaurante Botánico",
+        description:
+          "Concepto gastronómico donde la naturaleza es protagonista. El diseño integra un jardín vertical interior, materiales naturales y una paleta de colores terrosos para crear una experiencia inmersiva que complementa la propuesta culinaria orgánica del restaurante.",
+        fullDescription:
+          "Esta residencia minimalista fue diseñada para una familia joven que buscaba un espacio contemporáneo pero acogedor. El proyecto se desarrolló en un terreno de 800m² con orientación norte-sur, lo que permitió aprovechar al máximo la luz natural durante todo el día.\n" +
+          "La casa se estructura en dos volúmenes principales conectados por un puente acristalado que funciona como galería y espacio de transición. El volumen principal alberga las áreas sociales en planta baja (salón, comedor y cocina integrada) y los dormitorios en la planta superior. El segundo volumen contiene un estudio, gimnasio y zona de invitados.\n" +
+          "Los materiales utilizados incluyen hormigón visto, madera de roble y grandes superficies acristaladas con carpintería de aluminio de alta eficiencia térmica. La sostenibilidad fue un factor clave en el diseño, incorporando paneles solares, sistema de recolección de agua de lluvia y aislamiento térmico de alto rendimiento.",
+
+        category: "commercial",
+        location: "Valencia, España",
+        year: "2023",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/LESLY.mp4",
+        model3d: "/house.glb",
+        client: "Grupo Gastronómico Mediterráneo",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 meses",
+        services: ["Diseño arquitectónico", "Diseño de interiores", "Supervisión de obra"],
+        features: [
+          "Diseño bioclimático",
+          "Eficiencia energética",
+          "Domótica integrada",
+          "Jardín sostenible",
+          "Piscina de agua salada",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 4,
+        title: "Renovación Apartamento Histórico",
+        description:
+          "Rehabilitación de un apartamento en un edificio histórico del siglo XIX, preservando elementos arquitectónicos originales mientras se incorporan comodidades modernas. El proyecto equilibra el respeto por el patrimonio con las necesidades contemporáneas.",
+        fullDescription:
+          "Esta residencia minimalista fue diseñada para una familia joven que buscaba un espacio contemporáneo pero acogedor. El proyecto se desarrolló en un terreno de 800m² con orientación norte-sur, lo que permitió aprovechar al máximo la luz natural durante todo el día.\n" +
+          "La casa se estructura en dos volúmenes principales conectados por un puente acristalado que funciona como galería y espacio de transición. El volumen principal alberga las áreas sociales en planta baja (salón, comedor y cocina integrada) y los dormitorios en la planta superior. El segundo volumen contiene un estudio, gimnasio y zona de invitados.\n" +
+          "Los materiales utilizados incluyen hormigón visto, madera de roble y grandes superficies acristaladas con carpintería de aluminio de alta eficiencia térmica. La sostenibilidad fue un factor clave en el diseño, incorporando paneles solares, sistema de recolección de agua de lluvia y aislamiento térmico de alto rendimiento.",
+
+        category: "renovation",
+        location: "Sevilla, España",
+        year: "2020",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/MANUEL.mp4",
+        model3d: "/house.glb",
+        client: "Sr. y Sra. Martín",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 meses",
+        services: ["Diseño arquitectónico", "Diseño de interiores", "Supervisión de obra"],
+        features: [
+          "Diseño bioclimático",
+          "Eficiencia energética",
+          "Domótica integrada",
+          "Jardín sostenible",
+          "Piscina de agua salada",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 5,
+        title: "Centro Cultural La Cúpula",
+        fullDescription:
+          "Esta residencia minimalista fue diseñada para una familia joven que buscaba un espacio contemporáneo pero acogedor. El proyecto se desarrolló en un terreno de 800m² con orientación norte-sur, lo que permitió aprovechar al máximo la luz natural durante todo el día.\n" +
+          "La casa se estructura en dos volúmenes principales conectados por un puente acristalado que funciona como galería y espacio de transición. El volumen principal alberga las áreas sociales en planta baja (salón, comedor y cocina integrada) y los dormitorios en la planta superior. El segundo volumen contiene un estudio, gimnasio y zona de invitados.\n" +
+          "Los materiales utilizados incluyen hormigón visto, madera de roble y grandes superficies acristaladas con carpintería de aluminio de alta eficiencia térmica. La sostenibilidad fue un factor clave en el diseño, incorporando paneles solares, sistema de recolección de agua de lluvia y aislamiento térmico de alto rendimiento.",
+
+        description:
+          "Espacio multifuncional para eventos culturales con un diseño acústico innovador. La estructura incorpora una cúpula geodésica que optimiza la distribución del sonido y crea un espacio visualmente impactante para conciertos, exposiciones y conferencias.",
+        category: "public",
+        location: "Bilbao, España",
+        year: "2022",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/SORBOS.mp4",
+        model3d: "/house.glb",
+        client: "Ayuntamiento de Bilbao",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 meses",
+        services: ["Diseño arquitectónico", "Diseño de interiores", "Supervisión de obra"],
+        features: [
+          "Diseño bioclimático",
+          "Eficiencia energética",
+          "Domótica integrada",
+          "Jardín sostenible",
+          "Piscina de agua salada",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+    ],
+    en: [
+      {
+        id: 1,
+        title: "Modern House Pinar",
+        description:
+          "Minimalist residence with spacious open areas and natural light. Designed for a young family seeking a contemporary yet cozy space, this house incorporates sustainable materials and a bioclimatic design that reduces energy consumption.",
+        fullDescription:
+          "This minimalist residence was designed for a young family seeking a contemporary yet cozy space. The project was developed on an 800m² lot with a north-south orientation, allowing maximum use of natural light throughout the day.\n" +
+          "The house is structured in two main volumes connected by a glazed bridge that serves as a gallery and transition space. The main volume houses the social areas on the ground floor (living room, dining room, and integrated kitchen) and the bedrooms on the upper floor. The second volume contains a study, gym, and guest area.\n" +
+          "Materials used include exposed concrete, oak wood, and large glazed surfaces with high thermal efficiency aluminum frames. Sustainability was a key factor in the design, incorporating solar panels, a rainwater harvesting system, and high-performance thermal insulation.",
+        category: "residential",
+        location: "Madrid, Spain",
+        year: "2022",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/CASANOEL.mp4",
+        model3d: "/house.glb",
+        client: "Rodríguez Family",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 months",
+        services: ["Architectural design", "Interior design", "Construction supervision"],
+        features: [
+          "Bioclimatic design",
+          "Energy efficiency",
+          "Integrated home automation",
+          "Sustainable garden",
+          "Saltwater pool",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: "Nexus Creative Offices",
+        description:
+          "Collaborative workspace designed to promote creativity and well-being. This project transforms an old industrial warehouse into a dynamic work environment with flexible areas, rest zones, and integrated natural elements.",
+        fullDescription:
+          "This minimalist residence was designed for a young family seeking a contemporary yet cozy space. The project was developed on an 800m² lot with a north-south orientation, allowing maximum use of natural light throughout the day.\n" +
+          "The house is structured in two main volumes connected by a glazed bridge that serves as a gallery and transition space. The main volume houses the social areas on the ground floor (living room, dining room, and integrated kitchen) and the bedrooms on the upper floor. The second volume contains a study, gym, and guest area.\n" +
+          "Materials used include exposed concrete, oak wood, and large glazed surfaces with high thermal efficiency aluminum frames. Sustainability was a key factor in the design, incorporating solar panels, a rainwater harvesting system, and high-performance thermal insulation.",
+        category: "commercial",
+        location: "Barcelona, Spain",
+        year: "2021",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/FRITO.mp4",
+        model3d: "/house.glb",
+        client: "Nexus Innovations",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 months",
+        services: ["Architectural design", "Interior design", "Construction supervision"],
+        features: [
+          "Bioclimatic design",
+          "Energy efficiency",
+          "Integrated home automation",
+          "Sustainable garden",
+          "Saltwater pool",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 3,
+        title: "Botanic Restaurant",
+        description:
+          "Gastronomic concept where nature takes center stage. The design integrates an indoor vertical garden, natural materials, and an earthy color palette to create an immersive experience that complements the restaurant’s organic culinary proposal.",
+        fullDescription:
+          "This minimalist residence was designed for a young family seeking a contemporary yet cozy space. The project was developed on an 800m² lot with a north-south orientation, allowing maximum use of natural light throughout the day.\n" +
+          "The house is structured in two main volumes connected by a glazed bridge that serves as a gallery and transition space. The main volume houses the social areas on the ground floor (living room, dining room, and integrated kitchen) and the bedrooms on the upper floor. The second volume contains a study, gym, and guest area.\n" +
+          "Materials used include exposed concrete, oak wood, and large glazed surfaces with high thermal efficiency aluminum frames. Sustainability was a key factor in the design, incorporating solar panels, a rainwater harvesting system, and high-performance thermal insulation.",
+        category: "commercial",
+        location: "Valencia, Spain",
+        year: "2023",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/LESLY.mp4",
+        model3d: "/house.glb",
+        client: "Mediterranean Gastronomic Group",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 months",
+        services: ["Architectural design", "Interior design", "Construction supervision"],
+        features: [
+          "Bioclimatic design",
+          "Energy efficiency",
+          "Integrated home automation",
+          "Sustainable garden",
+          "Saltwater pool",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 4,
+        title: "Historic Apartment Renovation",
+        description:
+          "Restoration of an apartment in a 19th-century historic building, preserving original architectural elements while incorporating modern comforts. The project balances respect for heritage with contemporary needs.",
+        fullDescription:
+          "This minimalist residence was designed for a young family seeking a contemporary yet cozy space. The project was developed on an 800m² lot with a north-south orientation, allowing maximum use of natural light throughout the day.\n" +
+          "The house is structured in two main volumes connected by a glazed bridge that serves as a gallery and transition space. The main volume houses the social areas on the ground floor (living room, dining room, and integrated kitchen) and the bedrooms on the upper floor. The second volume contains a study, gym, and guest area.\n" +
+          "Materials used include exposed concrete, oak wood, and large glazed surfaces with high thermal efficiency aluminum frames. Sustainability was a key factor in the design, incorporating solar panels, a rainwater harvesting system, and high-performance thermal insulation.",
+        category: "renovation",
+        location: "Seville, Spain",
+        year: "2020",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/MANUEL.mp4",
+        model3d: "/house.glb",
+        client: "Mr. and Mrs. Martín",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 months",
+        services: ["Architectural design", "Interior design", "Construction supervision"],
+        features: [
+          "Bioclimatic design",
+          "Energy efficiency",
+          "Integrated home automation",
+          "Sustainable garden",
+          "Saltwater pool",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+      {
+        id: 5,
+        title: "La Cúpula Cultural Center",
+        description:
+          "Multifunctional space for cultural events with innovative acoustic design. The structure features a geodesic dome that optimizes sound distribution and creates a visually striking space for concerts, exhibitions, and conferences.",
+        fullDescription:
+          "This minimalist residence was designed for a young family seeking a contemporary yet cozy space. The project was developed on an 800m² lot with a north-south orientation, allowing maximum use of natural light throughout the day.\n" +
+          "The house is structured in two main volumes connected by a glazed bridge that serves as a gallery and transition space. The main volume houses the social areas on the ground floor (living room, dining room, and integrated kitchen) and the bedrooms on the upper floor. The second volume contains a study, gym, and guest area.\n" +
+          "Materials used include exposed concrete, oak wood, and large glazed surfaces with high thermal efficiency aluminum frames. Sustainability was a key factor in the design, incorporating solar panels, a rainwater harvesting system, and high-performance thermal insulation.",
+        category: "public",
+        location: "Bilbao, Spain",
+        year: "2022",
+        images: [
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+          // "/imagen2.jpg",
+        ],
+        video: "/SORBOS.mp4",
+        model3d: "/house.glb",
+        client: "City of Bilbao",
+        architect: "Ana Martínez",
+        area: "320 m²",
+        duration: "14 months",
+        services: ["Architectural design", "Interior design", "Construction supervision"],
+        features: [
+          "Bioclimatic design",
+          "Energy efficiency",
+          "Integrated home automation",
+          "Sustainable garden",
+          "Saltwater pool",
+        ],
+        comments: [
+          {
+            id: "1",
+            author: {
+              name: "Juan Pérez",
+              initials: "JP",
+            },
+            content:
+              "Me encanta el diseño bioclimático de esta casa. ¿Podrían compartir más detalles sobre el sistema de recolección de agua de lluvia? Estoy considerando implementar algo similar en mi proyecto.",
+            date: new Date("2023-11-05"),
+            likes: 5,
+            isLiked: false,
+            isQuestion: true,
+            replies: [
+              {
+                id: "1-1",
+                author: {
+                  name: "Ana Martínez",
+                  initials: "AM",
+                  isAdmin: true,
+                },
+                content:
+                  "Hola Juan, gracias por tu interés. El sistema de recolección de agua de lluvia incluye canalones especiales en el techo que dirigen el agua a un tanque subterráneo de 5000 litros. Esta agua se filtra y se utiliza para el riego del jardín y los inodoros, reduciendo el consumo de agua potable en aproximadamente un 40%. Si necesitas más información, no dudes en contactarnos directamente.",
+                date: new Date("2023-11-06"),
+                likes: 3,
+                isLiked: false,
+              },
+            ],
+          },
+          {
+            id: "2",
+            author: {
+              name: "Laura Gómez",
+              initials: "LG",
+            },
+            content:
+              "Tuve la oportunidad de visitar esta casa durante una jornada de puertas abiertas y quedé impresionada. La integración de los espacios interiores con el jardín es perfecta, y la luz natural que entra por los ventanales crea una atmósfera muy acogedora. Definitivamente un gran trabajo.",
+            date: new Date("2023-10-20"),
+            likes: 8,
+            isLiked: false,
+            isQuestion: false,
+          },
+        ],
+      },
+    ]
+  },
 
   // Products
   productsTitle: { es: "Productos", en: "Products" },
@@ -593,7 +1402,7 @@ const translations: Translations = {
   },
   acceptTerms: {
     es: "Acepto que mis datos sean procesados de acuerdo con la política de privacidad para recibir comunicaciones relacionadas con mi solicitud.",
-    en: "I agree that my data will be processed in accordance with the privacy policy to receive communications related to my request." 
+    en: "I agree that my data will be processed in accordance with the privacy policy to receive communications related to my request."
   },
   sendRequest: {
     es: "Enviar solicitud",
@@ -604,7 +1413,7 @@ const translations: Translations = {
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string | string[] | PromoModalContent | AboutPersonal[] | Service[]
+  t: (key: string) => string | string[] | PromoModalContent | AboutPersonal[] | Service[] | Project[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -620,7 +1429,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const t = (key: string): string | string[] | PromoModalContent | AboutPersonal[] | Service[] => {
+  const t = (key: string): string | string[] | PromoModalContent | AboutPersonal[] | Service[] | Project[] => {
     if (!translations[key]) {
       console.warn(`Translation key "${key}" not found.`)
       return key

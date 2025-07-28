@@ -68,10 +68,7 @@ export default function PriceCalculator() {
     <section id="calculator" className="py-20 bg-background parallax relative">
       <div className="absolute inset-0 z-0">
         <video
-          autoPlay
-          loop
-          muted
-          className="object-cover w-full h-full"
+          autoPlay muted playsInline loop className="object-cover w-full h-full"
         >
           <source src="/video3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
