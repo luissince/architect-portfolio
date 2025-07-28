@@ -66,13 +66,19 @@ export default function ImageGallery({ images, videos = [], alt }: ImageGalleryP
             className="w-full h-full"
           >
             {isVideo ? (
-              <video
-                src={allMedia[currentIndex].src}
-                className="w-full h-full object-contain"
-                controls
-                autoPlay={fullscreen}
-                loop
-              />
+              fullscreen ?
+                <video
+                  src={allMedia[currentIndex].src}
+                  className="w-full h-full object-contain"
+                  controls
+                  autoPlay={fullscreen}
+                  loop
+                /> :
+                <video
+                  src={allMedia[currentIndex].src}
+                  className="w-full h-full object-contain"
+                  autoPlay muted playsInline loop
+                />
             ) : (
               <div className="relative w-full h-full">
                 <Image
