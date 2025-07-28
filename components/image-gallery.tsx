@@ -71,7 +71,9 @@ export default function ImageGallery({ images, videos = [], alt }: ImageGalleryP
                 className="w-full h-full object-contain"
                 controls
                 autoPlay={fullscreen}
+                muted={fullscreen}
                 loop
+                playsInline={!fullscreen}
               />
             ) : (
               <div className="relative w-full h-full">
